@@ -15,11 +15,21 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('login')->unique();
             $table->string('password');
+            $table->string('phone');
+            $table->tinyInteger('role', false, true)->default(2);
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            'name' => 'Оксана',
+            'login' => 'oksana',
+            'password' => bcrypt('123456'),
+            'phone' => '63-70-55',
+            'role' => 1,
+        ]);
     }
 
     /**
