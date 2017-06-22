@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout.empty')
 
 @section('content')
     <h1>Страница не найдена</h1>

@@ -21,5 +21,14 @@ Route::group(['middleware' => 'auth'], function()
 Route::auth();
 
 Route::get('/', 'HomeController@index');
+Route::get('/prodaja-kvartir-v-ulan-ude', 'HomeController@index');
+Route::get('/prodaja-domov-v-ulan-ude', 'HomeController@index');
+Route::get('/prodaja-komnat-v-ulan-ude', 'HomeController@index');
+Route::get('/prodaja-uchastkov-v-ulan-ude', 'HomeController@index');
+
+Route::get('/prodaja-kvartir-v-ulan-ude/{id}', 'HomeController@object');
+Route::get('/prodaja-domov-v-ulan-ude/{id}', 'HomeController@object');
+Route::get('/prodaja-komnat-v-ulan-ude/{id}', 'HomeController@object');
+Route::get('/prodaja-uchastkov-v-ulan-ude/{id}', 'HomeController@object');
 
 

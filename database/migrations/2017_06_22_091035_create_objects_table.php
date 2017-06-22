@@ -31,6 +31,7 @@ class CreateObjectsTable extends Migration
             $table->text('description');
             $table->integer('creation_date')->unsigned();
             $table->integer('last_update_date')->unsigned();
+            $table->integer('price')->unsigned();
             $table->boolean('is_trash')->default(0);
             $table->timestamps();
         });

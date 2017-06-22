@@ -27,6 +27,7 @@ class AdminHomeController extends Controller
                 'rooms' => 'required|integer',
                 'floor' => 'required|integer',
                 'floors-total' => 'required|integer',
+                'price' => 'required|integer',
                 'description' => 'required',
             ]);
         } elseif ($request->category == 'дом') {
@@ -38,6 +39,7 @@ class AdminHomeController extends Controller
                 'rooms' => 'required|integer',
                 'floors-total' => 'required|integer',
                 'built-year' => 'required|integer|min:1900',
+                'price' => 'required|integer',
                 'description' => 'required',
             ]);
         } elseif ($request->category == 'комната') {
@@ -47,6 +49,7 @@ class AdminHomeController extends Controller
                 'area' => 'required|integer',
                 'floor' => 'required|integer',
                 'floors-total' => 'required|integer',
+                'price' => 'required|integer',
                 'description' => 'required',
             ]);
         } elseif ($request->category == 'участок') {
@@ -54,6 +57,7 @@ class AdminHomeController extends Controller
                 'sub-locality-name' => 'required|max:255',
                 'address' => 'required|max:255',
                 'lot-area' => 'required|integer',
+                'price' => 'required|integer',
                 'description' => 'required',
             ]);
         } else {
@@ -83,7 +87,9 @@ class AdminHomeController extends Controller
         if ($request->category == 'участок' || $request->category == 'дом') {
             $lotArea = 'lot-area';
             $object->lot_area = $request->$lotArea;
+        }
 
+        if ($request->category != 'участок' && $request->category != 'дом') {
             $object->floor = $request->floor;
         }
 
@@ -95,6 +101,7 @@ class AdminHomeController extends Controller
         $object->deal_status = $request->$dealStatus;
 
         $object->description = $request->description;
+        $object->price = $request->price;
 
         if ($request->name) {
             $object->name = $request->name;

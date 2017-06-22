@@ -62,42 +62,42 @@
                             <div class="control-group vars area{{ $errors->has('area') ? ' error' : '' }}">
                                 <label class="control-label" for="area">Общая площадь (кв.м.)</label>
                                 <div class="controls">
-                                    <input type="text" id="area" name="area" class="span12">
+                                    <input type="text" id="area" name="area" class="span12" value="{{ old('area') }}">
                                 </div>
                             </div>
 
                             <div class="control-group vars lot-area{{ $errors->has('lot-area') ? ' error' : '' }}">
                                 <label class="control-label" for="lot-area">Площадь участка (соток)</label>
                                 <div class="controls">
-                                    <input type="text" id="lot-area" name="lot-area" class="span12">
+                                    <input type="text" id="lot-area" name="lot-area" class="span12" value="{{ old('lot-area') }}">
                                 </div>
                             </div>
 
                             <div class="control-group vars rooms{{ $errors->has('rooms') ? ' error' : '' }}">
                                 <label class="control-label" for="rooms">Комнат</label>
                                 <div class="controls">
-                                    <input type="text" id="rooms" name="rooms" class="span12">
+                                    <input type="text" id="rooms" name="rooms" class="span12" value="{{ old('rooms') }}">
                                 </div>
                             </div>
 
                             <div class="control-group vars floor{{ $errors->has('floor') ? ' error' : '' }}">
                                 <label class="control-label" for="floor">Этаж</label>
                                 <div class="controls">
-                                    <input type="text" id="floor" name="floor" class="span12">
+                                    <input type="text" id="floor" name="floor" class="span12" value="{{ old('floor') }}">
                                 </div>
                             </div>
 
                             <div class="control-group vars floors-total{{ $errors->has('floors-total') ? ' error' : '' }}">
                                 <label class="control-label" for="floors-total">Этажей в доме</label>
                                 <div class="controls">
-                                    <input type="text" id="floors-total" name="floors-total" class="span12">
+                                    <input type="text" id="floors-total" name="floors-total" class="span12" value="{{ old('floors-total') }}">
                                 </div>
                             </div>
 
                             <div class="control-group vars built-year{{ $errors->has('built-year') ? ' error' : '' }}">
                                 <label class="control-label" for="built-year">Год постройки</label>
                                 <div class="controls">
-                                    <input type="text" id="built-year" name="built-year" class="span12">
+                                    <input type="text" id="built-year" name="built-year" class="span12" value="{{ old('built-year') }}">
                                 </div>
                             </div>
 
@@ -105,13 +105,13 @@
                                 <label class="control-label" for="renovation">Ремонт</label>
                                 <div class="controls">
                                     <select id="renovation" name="renovation" class="span12">
-                                        <option value="хороший">Хороший</option>
-                                        <option value="дизайнерский">Дизайнерский</option>
-                                        <option value="евро">Евро</option>
-                                        <option value="с отделкой">С отделкой</option>
-                                        <option value="требует ремонта">Требует ремонта</option>
-                                        <option value="частичный ремонт">Частичный ремонт</option>
-                                        <option value="черновая отделка">Черновая отделка</option>
+                                        <option value="хороший" @if(old('renovation') == 'хороший') selected @endif >Хороший</option>
+                                        <option value="дизайнерский" @if(old('renovation') == 'дизайнерский') selected @endif >Дизайнерский</option>
+                                        <option value="евро" @if(old('renovation') == 'евро') selected @endif >Евро</option>
+                                        <option value="с отделкой" @if(old('renovation') == 'с отделкой') selected @endif >С отделкой</option>
+                                        <option value="требует ремонта" @if(old('renovation') == 'требует ремонта') selected @endif >Требует ремонта</option>
+                                        <option value="частичный ремонт" @if(old('renovation') == 'частичный ремонт') selected @endif >Частичный ремонт</option>
+                                        <option value="черновая отделка" @if(old('renovation') == 'черновая отделка') selected @endif >Черновая отделка</option>
                                     </select>
                                 </div>
                             </div>
@@ -120,11 +120,11 @@
                                 <label class="control-label" for="deal-status">Тип сделки</label>
                                 <div class="controls">
                                     <select id="deal-status" name="deal-status" class="span12">
-                                        <option value="прямая продажа">прямая продажа</option>
-                                        <option value="продажа от застройщика">продажа от застройщика</option>
-                                        <option value="переуступка">переуступка</option>
-                                        <option value="первичная продажа вторички">первичная продажа вторички</option>
-                                        <option value="встречная продажа">встречная продажа</option>
+                                        <option value="прямая продажа" @if(old('deal-status') == 'прямая продажа') selected @endif >прямая продажа</option>
+                                        <option value="продажа от застройщика" @if(old('deal-status') == 'продажа от застройщика') selected @endif >продажа от застройщика</option>
+                                        <option value="переуступка" @if(old('deal-status') == 'переуступка') selected @endif >переуступка</option>
+                                        <option value="первичная продажа вторички" @if(old('deal-status') == 'первичная продажа вторички') selected @endif >первичная продажа вторички</option>
+                                        <option value="встречная продажа" @if(old('deal-status') == 'встречная продажа') selected @endif >встречная продажа</option>
                                     </select>
                                 </div>
                             </div>
@@ -132,21 +132,28 @@
                             <div class="control-group{{ $errors->has('description') ? ' error' : '' }}">
                                 <label class="control-label" for="description">Описание</label>
                                 <div class="controls">
-                                    <textarea id="description" name="description" class="span12"></textarea>
+                                    <textarea id="description" name="description" class="span12">{{ old('description') }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="control-group{{ $errors->has('price') ? ' error' : '' }}">
+                                <label class="control-label" for="price">Цена</label>
+                                <div class="controls">
+                                    <input type="text" id="price" name="price" class="span12" value="{{ old('price') }}">
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label" for="name">Имя (необязательно)</label>
                                 <div class="controls">
-                                    <input type="text" id="name" name="name" class="span12">
+                                    <input type="text" id="name" name="name" class="span12" value="{{ old('name') }}">
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label" for="phone">Телефон (необязательно)</label>
                                 <div class="controls">
-                                    <input type="text" id="phone" name="phone" class="span12">
+                                    <input type="text" id="phone" name="phone" class="span12" value="{{ old('phone') }}">
                                 </div>
                             </div>
 

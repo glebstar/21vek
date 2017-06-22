@@ -1,51 +1,52 @@
 @extends('layout.main')
 
+@section('addtitle')
+    {{ $title }}
+@endsection
+
 @section('content')
 <div class="row marketing">
-    <div class="col-lg-6">
-        <h4><a href="obj.html">2-к квартира, 2 400 000 р.</a></h4>
-        <a href=""><img src="img/1.jpg" /></a>
-        <p>Железнодорожный, Гагарина, 37, 48 кв.м., 2/5</p>
+    @foreach($objects as $key=>$object)
+        @if($key == 0)
+            <div class="col-lg-6">
+        @endif
+                @if($object->category == 'квартира')
+                <h4><a href="{{ $object->getUrl() }}">{{ $object->rooms }}-к квартира, {{ number_format($object->price, 0, '.', ' ') }} руб.</a></h4>
+                <a href="{{ $object->getUrl() }}"><img src="/img/no-image.png" /></a>
+                <p>{{ $object->sub_locality_name }}, {{ $object->address }}, {{ $object->area }} кв.м., {{ $object->floor }}/{{ $object->floors_total }}</p>
+                @endif
 
-        <h4><a href="">2-к квартира, 2 400 000 р.</a></h4>
-        <a href=""><img src="img/1.jpg" /></a>
-        <p>Железнодорожный, Гагарина, 37</p>
+                @if($object->category == 'дом')
+                    <h4><a href="{{ $object->getUrl() }}">Продаю {{ $object->floors_total }}-эт дом, {{ number_format($object->price, 0, '.', ' ') }} руб.</a></h4>
+                    <a href="{{ $object->getUrl() }}"><img src="/img/no-image.png" /></a>
+                    <p>{{ $object->sub_locality_name }}, {{ $object->address }}, {{ $object->area }} кв.м., участок {{ $object->lot_area }} сот.</p>
+                @endif
 
-        <h4><a href="">1-к квартира, 1 300 000 р.</a></h4>
-        <a href=""><img src="img/2.jpg" /></a>
-        <p>Советский, Фрунзе, 15</p>
-    </div>
+                @if($object->category == 'комната')
+                    <h4><a href="{{ $object->getUrl() }}">Продаю комнату, {{ number_format($object->price, 0, '.', ' ') }} руб.</a></h4>
+                    <a href="{{ $object->getUrl() }}"><img src="/img/no-image.png" /></a>
+                    <p>{{ $object->sub_locality_name }}, {{ $object->address }}, {{ $object->area }} кв.м., {{ $object->floor }}/{{ $object->floors_total }}</p>
+                @endif
 
-    <div class="col-lg-6">
-        <h4><a href="">1-к квартира, 1 300 000 р.</a></h4>
-        <a href=""><img src="img/no-image.png" /></a>
-        <p>Советский, Фрунзе, 15</p>
+                @if($object->category == 'участок')
+                    <h4><a href="{{ $object->getUrl() }}">Продаю участок, {{ number_format($object->price, 0, '.', ' ') }} руб.</a></h4>
+                    <a href="{{ $object->getUrl() }}"><img src="/img/no-image.png" /></a>
+                    <p>{{ $object->sub_locality_name }}, {{ $object->address }}, {{ $object->lot_area }} соток</p>
+                @endif
 
-        <h4><a href="">2-к квартира, 2 400 000 р.</a></h4>
-        <a href=""><img src="img/1.jpg" /></a>
-        <p>Железнодорожный, Гагарина, 37</p>
+                @if($key != 3 && $key != count($objects)-1)
+                <hr />
+                @endif
+        @if($key == 3)
+            </div>
+            <div class="col-lg-6">
+        @endif
 
-        <h4><a href="">2-к квартира, 2 400 000 р.</a></h4>
-        <a href=""><img src="img/1.jpg" /></a>
-        <p>Железнодорожный, Гагарина, 37</p>
-    </div>
+        @if($key == count($objects)-1)
+            </div>
+        @endif
+    @endforeach
 </div>
 
-<ul class="pagination">
-    <li>
-        <a href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-        </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-        <a href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-        </a>
-    </li>
-</ul>
+{{ $objects->links() }}
 @endsection
