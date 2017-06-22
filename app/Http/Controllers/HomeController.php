@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Object;
 use Request as GRequest;
+use App\Object;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -73,7 +74,8 @@ class HomeController extends Controller
         return view('home.object', [
             'object' => $object,
             'category' => $category,
-            'title' => $title
+            'title' => $title,
+            'user' => User::find($object->user_id)
         ]);
     }
 }

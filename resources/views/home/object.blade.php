@@ -73,7 +73,7 @@
     </div>
 
     <div class="row" style="margin-bottom: 20px;">
-        <span class="label label-info" style="font-size: 20px;">Оксана, тел. 8-9025-63-70-55, 8-9025-655-320</span>
+        <span class="label label-info" style="font-size: 20px;">@if($object->name){{ $object->name }} @else {{ $user->name }} @endif, тел. @if($object->phone){{ $object->phone }} @else {{ $user->phone }} @endif</span>
     </div>
 @endsection
 
