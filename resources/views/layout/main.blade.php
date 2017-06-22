@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +26,9 @@
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#">Главная</a></li>
-                <li role="presentation"><a href="#">О нас</a></li>
-                <li role="presentation"><a href="#">Контакты</a></li>
+                <li role="presentation" @if(Request::path() == '/') class="active" @endif><a href="/">Главная</a></li>
+                <li role="presentation"><a href="/about">О нас</a></li>
+                <li role="presentation"><a href="/contact">Контакты</a></li>
             </ul>
         </nav>
         <h3 class="text-muted">21 век. Агентство недвижимости</h3>

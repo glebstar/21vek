@@ -11,13 +11,15 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
-
 Route::group(['middleware' => 'auth'], function()
 {
     Route::get('/admin', 'AdminHomeController@index');
+    Route::get('/admin/addobject', 'AdminHomeController@addObject');
+    Route::post('/admin/addobject', 'AdminHomeController@addObjectPost');
 });
 
 Route::auth();
+
+Route::get('/', 'HomeController@index');
 
 

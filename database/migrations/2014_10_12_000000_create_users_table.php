@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             'name' => 'Оксана',
             'login' => 'oksana',
             'password' => bcrypt('123456'),
-            'phone' => '63-70-55',
+            'phone' => '+79025637055',
             'role' => 1,
         ]);
     }
