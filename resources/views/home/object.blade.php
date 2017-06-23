@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('addstyle')
-    <link href="/flex/flexslider.css" rel="stylesheet">
+    <link href="/flex/flexslider.css?v=2" rel="stylesheet">
 @endsection
 
 @section('addtitle')
@@ -150,7 +150,7 @@
 @endsection
 
 @section('addscript')
-    <script src="/flex/jquery.flexslider-min.js"></script>
+    <script src="/flex/jquery.flexslider-min.js?v=2"></script>
 
     <script type="text/javascript">
         $(window).load(function() {

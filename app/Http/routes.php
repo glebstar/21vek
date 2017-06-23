@@ -41,5 +41,3 @@ Route::get('/prodaja-kvartir-v-ulan-ude/{id}', 'HomeController@object');
 Route::get('/prodaja-domov-v-ulan-ude/{id}', 'HomeController@object');
 Route::get('/prodaja-komnat-v-ulan-ude/{id}', 'HomeController@object');
 Route::get('/prodaja-uchastkov-v-ulan-ude/{id}', 'HomeController@object');
-
-
