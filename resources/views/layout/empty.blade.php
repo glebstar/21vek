@@ -10,7 +10,7 @@
     <!-- Bootstrap -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/bootstrap/css/jumbotron-narrow.css" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/main.css?v={{ config('app.script_version') }}" rel="stylesheet">
 @yield('addstyle')
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
