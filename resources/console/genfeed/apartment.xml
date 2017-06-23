@@ -1,0 +1,37 @@
+<offer internal-id="--id--">
+    <type>продажа</type>
+    <property-type>жилая</property-type>
+    <category>квартира</category>
+    <deal-status>--deal_status--</deal-status>
+    <url>--url--</url>
+    <creation-date>--creation_date--</creation-date>
+    <last-update-date>--last_update_date--</last-update-date>
+    <location>
+        <country>Россия</country>
+        <region>Республика Бурятия</region>
+        <locality-name>Улан-Удэ</locality-name>
+        <sub-locality-name>--sub_locality_name--</sub-locality-name>
+        <address>--address--</address>
+    </location>
+    <sales-agent>
+        <category>agency</category>
+        <name>--name--</name>
+        <phone>--phone--</phone>
+    </sales-agent>
+    <price>
+        <value>--price--</value>
+        <currency>RUR</currency>
+    </price>
+    <area>
+        <value>--area--</value>
+        <unit>кв. м</unit>
+    </area>
+    <rooms>--rooms--</rooms>
+    <rooms-offered>--rooms--</rooms-offered>
+    <floor>--floor--</floor>
+    <renovation>--renovation--</renovation>
+    <description>--description--</description>
+    <floors-total>--floors_total--</floors-total>
+    --img--
+    --built_year--
+</offer>
