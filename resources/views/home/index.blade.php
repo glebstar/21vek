@@ -19,7 +19,7 @@
                 @if($object->category == 'дом')
                     <h4><a href="{{ $object->getUrl() }}">Продаю {{ $object->floors_total }}-эт дом, {{ number_format($object->price, 0, '.', ' ') }} руб.</a></h4>
                     <a href="{{ $object->getUrl() }}">@if(!$object->image_name)<img src="/img/no-image.png" />@else <img src="/photo/{{ $object->id }}/{{ $object->image_name }}" /> @endif</a>
-                    <p>{{ $object->sub_locality_name }}, {{ $object->address }}, {{ $object->area }} кв.м., участок {{ $object->lot_area }} сот.</p>
+                    <p>{{ $object->sub_locality_name }}, {{ $object->address }}, {{ $object->area }} кв.м.</p>
                 @endif
 
                 @if($object->category == 'комната')
