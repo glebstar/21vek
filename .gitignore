@@ -6,3 +6,5 @@ Homestead.yaml
 Homestead.json
 .env
 /public/robots.txt
+/public/photo/*
+!/public/photo/.gitempty

@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use App\Object;
+use App\Image;
 
 class AdminHomeController extends Controller
 {
     public function index() {
         return view('admin.index', [
+            'objects' => Object::where('is_trash', 0)->orderBy('creation_date', 'desc')->paginate(10)
         ]);
     }
 
@@ -19,6 +21,53 @@ class AdminHomeController extends Controller
     }
 
     public function addObjectPost(Request $request) {
+        $this->validateObject($request);
+
+        $object = new Object();
+
+        $object = $this->fillObject($object, $request);
+
+        $user = Auth::user();
+
+        $object->user_id = $user->id;
+        $object->creation_date = time();
+        $object->last_update_date = time();
+        $object->save();
+
+        return redirect('admin/editobject/' . $object->id);
+    }
+    
+    public function editObject($id) {
+        $object = Object::find($id);
+
+        if (! $object) {
+            abort(404);
+        }
+
+        return view('admin.editobject', [
+            'object' => $object,
+            'images' => Image::where('object_id', $object->id)->orderBy('id')->get()
+        ]);
+    }
+
+    public function editObjectPost(Request $request) {
+        $object = Object::find($request->id);
+
+        if (! $object) {
+            abort(404);
+        }
+
+        $this->validateObject($request);
+
+        $object = $this->fillObject($object, $request);
+
+        $object->last_update_date = time();
+        $object->save();
+
+        return redirect('admin/editobject/' . $object->id);
+    }
+
+    private function validateObject(Request $request) {
         if ($request->category == 'квартира') {
             $this->validate($request, [
                 'sub-locality-name' => 'required|max:255',
@@ -63,15 +112,16 @@ class AdminHomeController extends Controller
         } else {
             abort(404);
         }
+    }
 
-        $object = new Object();
+    private function fillObject($object, Request $request) {
         $object->category = $request->category;
-        
+
         $subLocalityName = 'sub-locality-name';
         $object->sub_locality_name = $request->$subLocalityName;
-        
+
         $object->address = $request->address;
-        
+
         if ($request->category != 'участок') {
             $object->area = $request->area;
 
@@ -111,14 +161,36 @@ class AdminHomeController extends Controller
             $object->phone = $request->phone;
         }
 
-        $user = Auth::user();
+        return $object;
+    }
 
-        $object->user_id = $user->id;
-        $object->creation_date = time();
-        $object->last_update_date = time();
+    public function addImage(Request $request) {
+        $object = Object::find($request->id);
 
-        $object->save();
+        if (! $object) {
+            abort(404);
+        }
+
+        $file = $request->file('image');
+
+        $object->addImage($file);
 
         return redirect('admin/editobject/' . $object->id);
+    }
+
+    public function delImage(Request $request) {
+        $object = Object::find($request->id);
+
+        if (! $object) {
+            return response()->json([
+                'result' => 'ok'
+            ]);
+        }
+
+        $object->delImage($request->image_id);
+
+        return response()->json([
+            'result' => 'ok'
+        ]);
     }
 }

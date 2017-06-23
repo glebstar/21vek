@@ -16,6 +16,12 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/admin', 'AdminHomeController@index');
     Route::get('/admin/addobject', 'AdminHomeController@addObject');
     Route::post('/admin/addobject', 'AdminHomeController@addObjectPost');
+
+    Route::get('/admin/editobject/{id}', 'AdminHomeController@editObject');
+    Route::post('/admin/editobject', 'AdminHomeController@editObjectPost');
+
+    Route::post('/admin/addimage', 'AdminHomeController@addImage');
+    Route::post('/admin/delimage', 'AdminHomeController@delImage');
 });
 
 Route::auth();

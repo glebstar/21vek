@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use App\Image;
 
 class Object extends Model
 {
@@ -63,5 +65,78 @@ class Object extends Model
         // удаляем начальные и конечные '-'
         $str = trim($str, "-");
         return $str;
+    }
+
+    public function addImage(UploadedFile $file) {
+        $dir = public_path() . '/photo/' . $this->id;
+        $filePath = $file->getPath() . '/' . $file->getFilename();
+        $size = getimagesize($filePath);
+        if (! $size) {
+            return false;
+        }
+
+        $image = new Image();
+        $image->object_id = $this->id;
+        $image->name = $file->getClientOriginalExtension();
+        $image->save();
+
+        if (!file_exists($dir)) {
+            mkdir($dir);
+        }
+
+        if ($size[0] < 820) {
+            $file->move($dir, $image->id . '.' . $image->name);
+            return true;
+        }
+
+        $oldimg = false;
+        if ($size[2] == IMAGETYPE_PNG) {
+            $oldimg = imagecreatefrompng($filePath);
+        }
+        if ($size[2] == IMAGETYPE_GIF) {
+            $oldimg = imagecreatefromgif($filePath);
+        }
+        if ($size[2] == IMAGETYPE_JPEG) {
+            $oldimg = imagecreatefromjpeg($filePath);
+        }
+        if (!$oldimg) {
+            return false;
+        }
+
+        $newHeight = round(($size[1] * 800) / $size[0]);
+        $newimg = imagecreatetruecolor(800, $newHeight);
+
+        imagecopyresampled($newimg, $oldimg, 0, 0, 0, 0, 800, $newHeight, $size[0], $size[1]);
+
+        $exif = exif_read_data($filePath);
+        if(!empty($exif['Orientation'])) {
+            switch($exif['Orientation']) {
+                case 8:
+                    $newimg = imagerotate($newimg, 90, 0);
+                    break;
+                case 3:
+                    $newimg = imagerotate($newimg, 180, 0);
+                    break;
+                case 6:
+                    $newimg = imagerotate($newimg, -90, 0);
+                    break;
+            }
+        }
+
+        imagejpeg($newimg, $dir . '/' . $image->id . '.jpg');
+
+        $image->name = 'jpg';
+        $image->save();
+    }
+
+    public function delImage($id) {
+        $image = Image::find($id);
+        if (!$image) {
+            return false;
+        }
+
+        $dir = public_path() . '/photo/' . $this->id;
+        unlink($dir . '/' . $image->id . '.' . $image->name);
+        Image::destroy($id);
     }
 }

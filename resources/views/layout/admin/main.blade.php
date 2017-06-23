@@ -264,6 +264,10 @@
 <!-- Demo Scripts -->
 <script src="/adm/assets/js/demo/dashboard.js"></script>
 
+<script>
+    var csrf_token = '{{ csrf_token() }}';
+</script>
+
 @yield('addscript')
 
 </body>

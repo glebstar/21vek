@@ -10,6 +10,25 @@ $(document.ready = function(){
         $('.vars').hide();
         changeCategory($(this).val());
     });
+
+    $('.j-btn-del-image').off('click');
+    $('.j-btn-del-image').on('click', function () {
+        if(confirm('Удалить фотографию?')) {
+            var submitdata = {
+                _token: csrf_token,
+                id: $(this).attr('data-object-id'),
+                image_id: $(this).attr('data-image-id')
+            };
+
+            var _self = $(this);
+
+            $.post('/admin/delimage', submitdata, function (data) {
+                _self.closest('.span3').remove();
+            }, 'json');
+        }
+
+        return false;
+    });
 });
 
 function changeCategory(category) {
