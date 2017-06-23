@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
+use DB;
 use App\Object;
 use App\Image;
 
@@ -12,7 +13,15 @@ class AdminHomeController extends Controller
 {
     public function index() {
         return view('admin.index', [
-            'objects' => Object::where('is_trash', 0)->orderBy('creation_date', 'desc')->paginate(10)
+            'objects' => Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY id LIMIT 1) AS image_name"))->
+            where('is_trash', 0)->orderBy('creation_date', 'desc')->paginate(10)
+        ]);
+    }
+
+    public function archive() {
+        return view('admin.index', [
+            'objects' => Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY id LIMIT 1) AS image_name"))->
+            where('is_trash', 1)->orderBy('creation_date', 'desc')->paginate(10)
         ]);
     }
 
@@ -174,6 +183,8 @@ class AdminHomeController extends Controller
         $file = $request->file('image');
 
         $object->addImage($file);
+        $object->last_update_date = time();
+        $object->save();
 
         return redirect('admin/editobject/' . $object->id);
     }
@@ -188,6 +199,42 @@ class AdminHomeController extends Controller
         }
 
         $object->delImage($request->image_id);
+        $object->last_update_date = time();
+        $object->save();
+
+        return response()->json([
+            'result' => 'ok'
+        ]);
+    }
+
+    public function toArchiveObject(Request $request) {
+        $object = Object::find($request->id);
+
+        if (! $object) {
+            return response()->json([
+                'result' => 'ok'
+            ]);
+        }
+
+        $object->is_trash = 1;
+        $object->save();
+
+        return response()->json([
+            'result' => 'ok'
+        ]);
+    }
+
+    public function fromArchiveObject(Request $request) {
+        $object = Object::find($request->id);
+
+        if (! $object) {
+            return response()->json([
+                'result' => 'ok'
+            ]);
+        }
+
+        $object->is_trash = 0;
+        $object->save();
 
         return response()->json([
             'result' => 'ok'

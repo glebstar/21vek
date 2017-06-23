@@ -22,6 +22,11 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::post('/admin/addimage', 'AdminHomeController@addImage');
     Route::post('/admin/delimage', 'AdminHomeController@delImage');
+
+    Route::get('/admin/archive', 'AdminHomeController@archive');
+
+    Route::post('/admin/toarchive', 'AdminHomeController@toArchiveObject');
+    Route::post('/admin/fromarchive', 'AdminHomeController@fromArchiveObject');
 });
 
 Route::auth();

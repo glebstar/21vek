@@ -29,6 +29,36 @@ $(document.ready = function(){
 
         return false;
     });
+
+    $('.j-bth-toarchive').off('click');
+    $('.j-bth-toarchive').on('click', function () {
+        if (confirm('Удалить объект в архив?')) {
+            var submitdata = {
+                _token: csrf_token,
+                id: $(this).attr('data-object-id')
+            };
+
+            $.post('/admin/toarchive', submitdata, function (data) {
+                location.reload();
+            }, 'json');
+        }
+        return false;
+    });
+
+    $('.j-bth-fromarchive').off('click');
+    $('.j-bth-fromarchive').on('click', function () {
+        if (confirm('Вернуть из архива?')) {
+            var submitdata = {
+                _token: csrf_token,
+                id: $(this).attr('data-object-id')
+            };
+
+            $.post('/admin/fromarchive', submitdata, function (data) {
+                location.reload();
+            }, 'json');
+        }
+        return false;
+    });
 });
 
 function changeCategory(category) {

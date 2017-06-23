@@ -18,6 +18,15 @@
     </div>
 
     <div id="main-content">
+
+        <div class="row-fluid" style="margin-bottom: 20px;">
+            @if($object->is_trash)
+            <button class="j-bth-fromarchive btn btn-success" data-object-id="{{ $object->id }}">Вернуть из архива</button>
+            @else
+            <button class="j-bth-toarchive btn btn-danger" data-object-id="{{ $object->id }}">Удалить в архив</button>
+            @endif
+        </div>
+
         <div class="row-fluid">
             <div class="span12">
                 <div class="widget">

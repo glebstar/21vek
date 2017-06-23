@@ -47,7 +47,7 @@
                             <td>@if($object->rooms){{ $object->rooms }}@endif</td>
                             <td>@if($object->floor){{ $object->floor }}@endif</td>
                             <td>@if($object->floors_total){{ $object->floors_total }}@endif</td>
-                            <td><img src="/img/no-image.png" style="height: 100px;" /></td>
+                            <td><a href="/admin/editobject/{{ $object->id }}">@if(!$object->image_name)<img src="/img/no-image.png" style="height: 100px;" />@else <img src="/photo/{{ $object->id }}/{{ $object->image_name }}" style="height: 100px;" /> @endif</a></td>
                         </tr>
                         @endforeach
                         </tbody>

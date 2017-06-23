@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Request as GRequest;
 use App\Object;
 use App\User;
+use App\Image;
+use DB;
 
 class HomeController extends Controller
 {
@@ -14,7 +16,8 @@ class HomeController extends Controller
     {
         $category = 'Продажа недвижимости в Улан-Удэ';
 
-        $query = Object::where('is_trash', 0)->orderBy('creation_date', 'desc');
+        $query = Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY id LIMIT 1) AS image_name"))
+            ->where('is_trash', 0)->orderBy('creation_date', 'desc');
 
         if ($request->path() == 'prodaja-kvartir-v-ulan-ude') {
             $category = 'Продажа квартир в Улан-Удэ';
@@ -70,12 +73,21 @@ class HomeController extends Controller
             $title = 'Продаю дом в Улан-Удэ, район ' . $object->sub_locality_name;
         }
 
+        if ($object->category == 'комната') {
+            $title = 'Продаю комнату в Улан-Удэ, адрес ' . $object->address;
+        }
+
+        if ($object->category == 'участок') {
+            $title = 'Продаю участок в Улан-Удэ, район ' . $object->sub_locality_name;
+        }
+
 
         return view('home.object', [
             'object' => $object,
             'category' => $category,
             'title' => $title,
-            'user' => User::find($object->user_id)
+            'user' => User::find($object->user_id),
+            'images' => Image::where('object_id', $object->id)->orderBy('id')->get()
         ]);
     }
 }

@@ -115,6 +115,7 @@
                                         </span>
                                     <ul class="inner-nav">
                                         <li @if(Request::path() == 'admin') class="active" @endif><a href="/admin"><i class="icol-dashboard"></i> Все объекты</a></li>
+                                        <li @if(Request::path() == 'admin/archive') class="active" @endif><a href="/admin/archive"><i class="icol-lock"></i> Архив</a></li>
                                         <li @if(Request::path() == 'admin/addobject') class="active" @endif><a href="/admin/addobject"><i class="icol-add"></i> Добавить объект</a></li>
                                         <!--
                                         <li><a href="calendar.html"><i class="icol-calendar-2"></i> Calendar</a></li>

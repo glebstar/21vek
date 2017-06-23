@@ -13,25 +13,26 @@
         @if($object->category == 'квартира')
         <h3>{{ $object->rooms }} комнатная квартира, {{ number_format($object->price, 0, '.', ' ') }} р.</h3>
         @endif
+
+        @if($object->category != 'квартира')
+            <h3>Продаётся {{ $object->category }}, {{ number_format($object->price, 0, '.', ' ') }} р.</h3>
+        @endif
+
     </div>
 
     <div class="row">
         <div class="flexslider">
             <ul class="slides">
+                @if(count($images) == 0)
                 <li>
-                    <img src="/img/1.jpg" />
-                    <p class="flex-caption">Captions and cupcakes. Winning combination.</p>
+                    <img src="/img/no-image.png" />
                 </li>
+                @endif
+                @foreach($images as $image)
                 <li>
-                    <img src="/img/2.jpg" />
-                    <p class="flex-caption">This image is wrapped in a link!</p>
+                    <img src="/photo/{{ $object->id }}/{{ $image->id }}.{{ $image->name }}" />
                 </li>
-                <li>
-                    <img src="/img/3.jpg" />
-                </li>
-                <li>
-                    <img src="/img/4.jpg" />
-                </li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -39,41 +40,112 @@
     <div class="row">
         <ul class="list-group">
             <li class="list-group-item">
-                <span class="badge">Железнодорожный</span>
+                <span class="badge">{{ $object->sub_locality_name }}</span>
                 Район
             </li>
             <li class="list-group-item">
-                <span class="badge">Волконского, 1а</span>
+                <span class="badge">{{ $object->address }}</span>
                 Адрес
             </li>
+
+            @if($object->category == 'квартира')
             <li class="list-group-item">
-                <span class="badge">2</span>
+                <span class="badge">{{ $object->rooms }}</span>
                 Комнат
             </li>
             <li class="list-group-item">
-                <span class="badge">2 из 5</span>
+                <span class="badge">{{ $object->floor }} из {{ $object->floors_total }}</span>
                 Этаж
             </li>
             <li class="list-group-item">
-                <span class="badge">48 кв.м</span>
+                <span class="badge">{{ $object->area }} кв.м</span>
                 Общая площадь
             </li>
             <li class="list-group-item">
-                <span class="badge">63-70-55</span>
-                Телефон
+                <span class="badge">{{ $object->renovation }}</span>
+                Ремонт
             </li>
+            <li class="list-group-item">
+                <span class="badge">{{ $object->deal_status }}</span>
+                Условия сделки
+            </li>
+            @endif
+
+            @if($object->category == 'дом')
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->rooms }}</span>
+                    Комнат
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->floors_total }}</span>
+                    Этажей
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->area }} кв.м</span>
+                    Общая площадь
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->lot_area }} соток</span>
+                    Площадь участка
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->built_year }}</span>
+                    Год постройки
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->renovation }}</span>
+                    Ремонт
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->deal_status }}</span>
+                    Условия сделки
+                </li>
+            @endif
+
+            @if($object->category == 'комната')
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->floor }} из {{ $object->floors_total }}</span>
+                    Этаж
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->area }} кв.м</span>
+                    Общая площадь
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->renovation }}</span>
+                    Ремонт
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->deal_status }}</span>
+                    Условия сделки
+                </li>
+            @endif
+
+            @if($object->category == 'участок')
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->lot_area }} соток</span>
+                    Площадь участка
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{ $object->deal_status }}</span>
+                    Условия сделки
+                </li>
+            @endif
         </ul>
 
         <div class="panel panel-default">
             <div class="panel-body">
-                Продается отличная квартира на втором этаже 30-ти этажного кирпичного дома.
-                Санузел раздельный, отопление печное
+                {!! nl2br($object->description) !!}
             </div>
         </div>
     </div>
 
     <div class="row" style="margin-bottom: 20px;">
-        <span class="label label-info" style="font-size: 20px;">@if($object->name){{ $object->name }} @else {{ $user->name }} @endif, тел. @if($object->phone){{ $object->phone }} @else {{ $user->phone }} @endif</span>
+        @if($object->is_trash)
+            <span class="label label-danger" style="font-size: 20px;">Объявление находится в архиве</span>
+        @else
+            <span class="label label-info" style="font-size: 20px;">@if($object->name){{ $object->name }} @else {{ $user->name }} @endif, тел. @if($object->phone){{ $object->phone }} @else {{ $user->phone }} @endif</span>
+        @endif
     </div>
 @endsection
 

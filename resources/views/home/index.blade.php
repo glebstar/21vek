@@ -12,25 +12,25 @@
         @endif
                 @if($object->category == 'квартира')
                 <h4><a href="{{ $object->getUrl() }}">{{ $object->rooms }}-к квартира, {{ number_format($object->price, 0, '.', ' ') }} руб.</a></h4>
-                <a href="{{ $object->getUrl() }}"><img src="/img/no-image.png" /></a>
+                <a href="{{ $object->getUrl() }}">@if(!$object->image_name)<img src="/img/no-image.png" />@else <img src="/photo/{{ $object->id }}/{{ $object->image_name }}" /> @endif</a>
                 <p>{{ $object->sub_locality_name }}, {{ $object->address }}, {{ $object->area }} кв.м., {{ $object->floor }}/{{ $object->floors_total }}</p>
                 @endif
 
                 @if($object->category == 'дом')
                     <h4><a href="{{ $object->getUrl() }}">Продаю {{ $object->floors_total }}-эт дом, {{ number_format($object->price, 0, '.', ' ') }} руб.</a></h4>
-                    <a href="{{ $object->getUrl() }}"><img src="/img/no-image.png" /></a>
+                    <a href="{{ $object->getUrl() }}">@if(!$object->image_name)<img src="/img/no-image.png" />@else <img src="/photo/{{ $object->id }}/{{ $object->image_name }}" /> @endif</a>
                     <p>{{ $object->sub_locality_name }}, {{ $object->address }}, {{ $object->area }} кв.м., участок {{ $object->lot_area }} сот.</p>
                 @endif
 
                 @if($object->category == 'комната')
                     <h4><a href="{{ $object->getUrl() }}">Продаю комнату, {{ number_format($object->price, 0, '.', ' ') }} руб.</a></h4>
-                    <a href="{{ $object->getUrl() }}"><img src="/img/no-image.png" /></a>
+                    <a href="{{ $object->getUrl() }}">@if(!$object->image_name)<img src="/img/no-image.png" />@else <img src="/photo/{{ $object->id }}/{{ $object->image_name }}" /> @endif</a>
                     <p>{{ $object->sub_locality_name }}, {{ $object->address }}, {{ $object->area }} кв.м., {{ $object->floor }}/{{ $object->floors_total }}</p>
                 @endif
 
                 @if($object->category == 'участок')
                     <h4><a href="{{ $object->getUrl() }}">Продаю участок, {{ number_format($object->price, 0, '.', ' ') }} руб.</a></h4>
-                    <a href="{{ $object->getUrl() }}"><img src="/img/no-image.png" /></a>
+                    <a href="{{ $object->getUrl() }}">@if(!$object->image_name)<img src="/img/no-image.png" />@else <img src="/photo/{{ $object->id }}/{{ $object->image_name }}" /> @endif</a>
                     <p>{{ $object->sub_locality_name }}, {{ $object->address }}, {{ $object->lot_area }} соток</p>
                 @endif
 
