@@ -1,7 +1,7 @@
 <offer internal-id="--id--">
     <type>продажа</type>
     <property-type>жилая</property-type>
-    <category>квартира</category>
+    <category>комната</category>
     <deal-status>--deal_status--</deal-status>
     <url>--url--</url>
     <creation-date>--creation_date--</creation-date>
@@ -26,7 +26,8 @@
         <value>--area--</value>
         <unit>кв. м</unit>
     </area>
-    <rooms>--rooms--</rooms>
+    <rooms>1</rooms>
+    <rooms-offered>1</rooms-offered>
     <floor>--floor--</floor>
     <renovation>--renovation--</renovation>
     <description>--description--</description>

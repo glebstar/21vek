@@ -1,7 +1,7 @@
 <offer internal-id="--id--">
     <type>продажа</type>
     <property-type>жилая</property-type>
-    <category>квартира</category>
+    <category>дом с участком</category>
     <deal-status>--deal_status--</deal-status>
     <url>--url--</url>
     <creation-date>--creation_date--</creation-date>
@@ -26,11 +26,14 @@
         <value>--area--</value>
         <unit>кв. м</unit>
     </area>
+    <lot-area>
+        <value>--lot_area--</value>
+        <unit>сот</unit>
+    </lot-area>
     <rooms>--rooms--</rooms>
-    <floor>--floor--</floor>
     <renovation>--renovation--</renovation>
-    <description>--description--</description>
     <floors-total>--floors_total--</floors-total>
+    <built-year>--built_year--</built-year>
+    <description>--description--</description>
     --img--
-    --built_year--
 </offer>
