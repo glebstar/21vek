@@ -108,8 +108,8 @@
                     <aside id="sidebar">
                         <nav id="navigation" class="collapse">
                             <ul>
-                                <li class="active">
-                                    	<span title="General">
+                                <li @if($tab == 'main')class="active" @endif>
+                                    	<span title="Главная">
                                     		<i class="icon-home"></i>
 											<span class="nav-title">Главная</span>
                                         </span>
@@ -125,19 +125,23 @@
                                         -->
                                     </ul>
                                 </li>
-                                <!--
-                                <li>
+
+                                <li @if($tab == 'feed')class="active" @endif>
                                     	<span title="Table">
-                                    		<i class="icon-table"></i>
-											<span class="nav-title">Table</span>
+                                    		<i class="icon-file-xml"></i>
+											<span class="nav-title">XML Фид</span>
                                         </span>
                                     <ul class="inner-nav">
-                                        <li><a href="tables.html"><i class="icol-style"></i> Static Tables</a></li>
+                                        <li @if(Request::path() == 'admin/feed') class="active" @endif><a href="/admin/feed"><i class="icol-database"></i> Генерация фида</a></li>
+                                        <!--
                                         <li><a href="responsive_tables.html"><i class="icol-hammer-screwdriver"></i> Responsive Tables</a></li>
                                         <li><a href="data_tables.html"><i class="icol-table"></i> Data Tables</a></li>
                                         <li><a href="detail_view.html"><i class="icol-eye"></i> Detail View Table</a></li>
+                                        -->
                                     </ul>
                                 </li>
+
+                                <!--
                                 <li>
                                     	<span title="Statistic">
                                         	<i class="icon-graph"></i>

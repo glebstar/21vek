@@ -8,25 +8,30 @@ use Auth;
 use DB;
 use App\Object;
 use App\Image;
+use Artisan;
 
 class AdminHomeController extends Controller
 {
     public function index() {
         return view('admin.index', [
             'objects' => Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY id LIMIT 1) AS image_name"))->
-            where('is_trash', 0)->orderBy('creation_date', 'desc')->paginate(10)
+            where('is_trash', 0)->orderBy('creation_date', 'desc')->paginate(10),
+            'tab' => 'main'
         ]);
     }
 
     public function archive() {
         return view('admin.index', [
             'objects' => Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY id LIMIT 1) AS image_name"))->
-            where('is_trash', 1)->orderBy('creation_date', 'desc')->paginate(10)
+            where('is_trash', 1)->orderBy('creation_date', 'desc')->paginate(10),
+            'tab' => 'main'
         ]);
     }
 
     public function addObject() {
-        return view('admin.addobject');
+        return view('admin.addobject', [
+            'tab' => 'main'
+        ]);
     }
 
     public function addObjectPost(Request $request) {
@@ -55,7 +60,8 @@ class AdminHomeController extends Controller
 
         return view('admin.editobject', [
             'object' => $object,
-            'images' => Image::where('object_id', $object->id)->orderBy('id')->get()
+            'images' => Image::where('object_id', $object->id)->orderBy('id')->get(),
+            'tab' => 'main'
         ]);
     }
 
@@ -239,5 +245,17 @@ class AdminHomeController extends Controller
         return response()->json([
             'result' => 'ok'
         ]);
+    }
+
+    public function feed() {
+        return view('admin.feed', [
+            'tab' => 'feed'
+        ]);
+    }
+
+    public function feedGen() {
+        Artisan::call('genfeed');
+
+        return redirect('admin/feed');
     }
 }
