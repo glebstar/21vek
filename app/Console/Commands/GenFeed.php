@@ -42,7 +42,7 @@ class GenFeed extends Command
     {
         define('PATH_TO_FEED', base_path() . '/public/21vek-an-feed.xml');
         $file = file_get_contents (base_path() . '/resources/console/genfeed/head.xml');
-        $file = str_replace('--gendate--', date('Y-m-d\TH:i:s+08:00'), $file);
+        $file = str_replace('--gendate--', date('Y-m-d\TH:i:sP'), $file);
         
         $offerApartment = file_get_contents (base_path() . '/resources/console/genfeed/apartment.xml');
         $offerHouse = file_get_contents (base_path() . '/resources/console/genfeed/house.xml');
@@ -60,8 +60,8 @@ class GenFeed extends Command
                 $offer = str_replace('--id--', $object->id, $offer);
                 $offer = str_replace('--url--', config('app.url') . $object->getUrl(), $offer);
                 $offer = str_replace('--deal_status--', $object->deal_status, $offer);
-                $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:s+08:00', $object->creation_date), $offer);
-                $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:s+08:00', $object->last_update_date), $offer);
+                $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:sP', $object->creation_date), $offer);
+                $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:sP', $object->last_update_date), $offer);
                 $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
 
                 $address = str_replace([
@@ -116,8 +116,8 @@ class GenFeed extends Command
                 $offer = str_replace('--id--', $object->id, $offer);
                 $offer = str_replace('--url--', config('app.url') . $object->getUrl(), $offer);
                 $offer = str_replace('--deal_status--', $object->deal_status, $offer);
-                $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:s+08:00', $object->creation_date), $offer);
-                $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:s+08:00', $object->last_update_date), $offer);
+                $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:sP', $object->creation_date), $offer);
+                $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:sP', $object->last_update_date), $offer);
                 $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
 
                 $address = str_replace([
@@ -165,8 +165,8 @@ class GenFeed extends Command
                 $offer = str_replace('--id--', $object->id, $offer);
                 $offer = str_replace('--url--', config('app.url') . $object->getUrl(), $offer);
                 $offer = str_replace('--deal_status--', $object->deal_status, $offer);
-                $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:s+08:00', $object->creation_date), $offer);
-                $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:s+08:00', $object->last_update_date), $offer);
+                $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:sP', $object->creation_date), $offer);
+                $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:sP', $object->last_update_date), $offer);
                 $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
 
                 $address = str_replace([
@@ -220,8 +220,8 @@ class GenFeed extends Command
                 $offer = str_replace('--id--', $object->id, $offer);
                 $offer = str_replace('--url--', config('app.url') . $object->getUrl(), $offer);
                 $offer = str_replace('--deal_status--', $object->deal_status, $offer);
-                $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:s+08:00', $object->creation_date), $offer);
-                $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:s+08:00', $object->last_update_date), $offer);
+                $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:sP', $object->creation_date), $offer);
+                $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:sP', $object->last_update_date), $offer);
                 $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
 
                 $address = str_replace([
