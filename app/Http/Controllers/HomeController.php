@@ -8,6 +8,7 @@ use Request as GRequest;
 use App\Object;
 use App\User;
 use App\Image;
+use App\Setting;
 use DB;
 
 class HomeController extends Controller
@@ -88,6 +89,20 @@ class HomeController extends Controller
             'title' => $title,
             'user' => User::find($object->user_id),
             'images' => Image::where('object_id', $object->id)->orderBy('id')->get()
+        ]);
+    }
+    
+    public function about() {
+        return view('home.page', [
+            'title' => 'О нас',
+            'body' => Setting::where('id', 1)->first()->about
+        ]);
+    }
+
+    public function contact() {
+        return view('home.page', [
+            'title' => 'Контакты',
+            'body' => Setting::where('id', 1)->first()->contact
         ]);
     }
 }

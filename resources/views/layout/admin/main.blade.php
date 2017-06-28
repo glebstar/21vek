@@ -141,6 +141,17 @@
                                     </ul>
                                 </li>
 
+                                <li @if($tab == 'cms')class="active" @endif>
+                                    	<span title="Table">
+                                    		<i class="icon-info-sign"></i>
+											<span class="nav-title">CMS</span>
+                                        </span>
+                                    <ul class="inner-nav">
+                                        <li @if(Request::path() == 'admin/cms/about') class="active" @endif><a href="/admin/cms/about"><i class="icol-help"></i> О нас</a></li>
+                                        <li @if(Request::path() == 'admin/cms/contact') class="active" @endif><a href="/admin/cms/contact"><i class="icol-user-business"></i> Контакты</a></li>
+                                    </ul>
+                                </li>
+
                                 <!--
                                 <li>
                                     	<span title="Statistic">

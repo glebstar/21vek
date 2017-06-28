@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>21 век - агентство недвижимости - @yield('addtitle')</title>
+    <title>21 век - агентство недвижимости Улан-Удэ - @yield('addtitle')</title>
 
     <!-- Bootstrap -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,8 +26,8 @@
         <nav>
             <ul class="nav nav-pills pull-right">
                 <li role="presentation" @if(Request::path() == '/') class="active" @endif><a href="/">Главная</a></li>
-                <li role="presentation"><a href="/about">О нас</a></li>
-                <li role="presentation"><a href="/contact">Контакты</a></li>
+                <li role="presentation" @if(Request::path() == 'about') class="active" @endif><a href="/about">О нас</a></li>
+                <li role="presentation" @if(Request::path() == 'contact') class="active" @endif><a href="/contact">Контакты</a></li>
             </ul>
         </nav>
         <h3 class="text-muted">21 век. Агентство недвижимости</h3>

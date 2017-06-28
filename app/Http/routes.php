@@ -30,6 +30,12 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::get('/admin/feed', 'AdminHomeController@feed');
     Route::get('/admin/feed/gen', 'AdminHomeController@feedGen');
+
+    Route::get('/admin/cms/about', 'AdminCmsController@about');
+    Route::post('/admin/cms/about', 'AdminCmsController@aboutPost');
+
+    Route::get('/admin/cms/contact', 'AdminCmsController@contact');
+    Route::post('/admin/cms/contact', 'AdminCmsController@contactPost');
 });
 
 Route::auth();
@@ -45,6 +51,9 @@ Route::get('/prodaja-domov-v-ulan-ude/{id}', 'HomeController@object');
 Route::get('/prodaja-komnat-v-ulan-ude/{id}', 'HomeController@object');
 Route::get('/prodaja-uchastkov-v-ulan-ude/{id}', 'HomeController@object');
 
+Route::get('/about', 'HomeController@about');
+Route::get('/contact', 'HomeController@contact');
+
 Route::get('/aaa', function (){
-    Artisan::call('genfeed');
+    //Artisan::call('genfeed');
 });
