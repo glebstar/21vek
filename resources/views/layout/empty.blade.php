@@ -36,6 +36,10 @@
     @yield('category')
     @yield('content')
 
+    <div class="row">
+        <img src="/img/sb-1.png" />
+    </div>
+
     <footer class="footer">
         <p>&copy; 2017 АН 21 век. Тел: 63-70-55</p>
     </footer>
