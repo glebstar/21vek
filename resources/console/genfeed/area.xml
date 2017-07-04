@@ -17,6 +17,9 @@
         <category>agency</category>
         <name>--name--</name>
         <phone>--phone--</phone>
+        <organization>21 век</organization>
+        <url>http://21vek-an.ru/</url>
+        <photo>http://21vek-an.ru/img/logo.jpg</photo>
     </sales-agent>
     <price>
         <value>--price--</value>
