@@ -189,7 +189,7 @@
                         @endif
                         @foreach($images as $image)
                             <div class="span3">
-                                <img src="/photo/{{ $object->id }}/{{ $image->id }}.{{ $image->name }}" style="width: 95%;" />
+                                <img src="/photo/{{ $object->id }}/{{ $image->id }}.{{ $image->name }}" style="height: 100px;" />
                                 <p><a href="#" class="j-btn-del-image" data-object-id="{{ $object->id }}" data-image-id="{{ $image->id }}">удалить</a></p>
                             </div>
                         @endforeach

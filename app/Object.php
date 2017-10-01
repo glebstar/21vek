@@ -136,7 +136,9 @@ class Object extends Model
         }
 
         $dir = public_path() . '/photo/' . $this->id;
-        unlink($dir . '/' . $image->id . '.' . $image->name);
+        if(file_exists($dir . '/' . $image->id . '.' . $image->name)) {
+            unlink($dir . '/' . $image->id . '.' . $image->name);
+        }
         Image::destroy($id);
     }
 }
