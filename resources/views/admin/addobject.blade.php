@@ -129,6 +129,13 @@
                                 </div>
                             </div>
 
+                            <div class="control-group">
+                                <label class="control-label" for="cadastral-number">Кадастровый номер</label>
+                                <div class="controls">
+                                    <input type="text" id="cadastral-number" name="cadastral_number" class="span12" value="{{ old('cadastral_number') }}">
+                                </div>
+                            </div>
+
                             <div class="control-group{{ $errors->has('description') ? ' error' : '' }}">
                                 <label class="control-label" for="description">Описание</label>
                                 <div class="controls">

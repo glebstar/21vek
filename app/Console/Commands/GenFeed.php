@@ -64,6 +64,12 @@ class GenFeed extends Command
                 $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:sP', $object->last_update_date), $offer);
                 $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
 
+                if ($object->cadastral_number) {
+                    $offer = str_replace('--cadastral--', '<cadastral-number>' . $object->cadastral_number . '</cadastral-number>', $offer);
+                } else {
+                    $offer = str_replace('--cadastral--', '', $offer);
+                }
+
                 $address = str_replace([
                     '"', '&', '>', '<', '\''
                 ], [
@@ -120,6 +126,12 @@ class GenFeed extends Command
                 $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:sP', $object->last_update_date), $offer);
                 $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
 
+                if ($object->cadastral_number) {
+                    $offer = str_replace('--cadastral--', '<cadastral-number>' . $object->cadastral_number . '</cadastral-number>', $offer);
+                } else {
+                    $offer = str_replace('--cadastral--', '', $offer);
+                }
+
                 $address = str_replace([
                     '"', '&', '>', '<', '\''
                 ], [
@@ -168,6 +180,12 @@ class GenFeed extends Command
                 $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:sP', $object->creation_date), $offer);
                 $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:sP', $object->last_update_date), $offer);
                 $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
+
+                if ($object->cadastral_number) {
+                    $offer = str_replace('--cadastral--', '<cadastral-number>' . $object->cadastral_number . '</cadastral-number>', $offer);
+                } else {
+                    $offer = str_replace('--cadastral--', '', $offer);
+                }
 
                 $address = str_replace([
                     '"', '&', '>', '<', '\''
@@ -223,6 +241,12 @@ class GenFeed extends Command
                 $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:sP', $object->creation_date), $offer);
                 $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:sP', $object->last_update_date), $offer);
                 $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
+
+                if ($object->cadastral_number) {
+                    $offer = str_replace('--cadastral--', '<cadastral-number>' . $object->cadastral_number . '</cadastral-number>', $offer);
+                } else {
+                    $offer = str_replace('--cadastral--', '', $offer);
+                }
 
                 $address = str_replace([
                     '"', '&', '>', '<', '\''

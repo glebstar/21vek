@@ -176,6 +176,8 @@ class AdminHomeController extends Controller
             $object->phone = $request->phone;
         }
 
+        $object->cadastral_number = $request->cadastral_number ? $request->cadastral_number : '';
+
         return $object;
     }
 

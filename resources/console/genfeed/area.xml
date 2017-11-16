@@ -29,6 +29,7 @@
         <value>--lot_area--</value>
         <unit>сот</unit>
     </lot-area>
+    --cadastral--
     <description>--description--</description>
     --img--
 </offer>
