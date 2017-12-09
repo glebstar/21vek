@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'script_version' => 8,
+    'script_version' => 9,
 
     'env' => env('APP_ENV', 'production'),
 

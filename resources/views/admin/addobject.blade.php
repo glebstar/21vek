@@ -139,7 +139,7 @@
                             <div class="control-group{{ $errors->has('description') ? ' error' : '' }}">
                                 <label class="control-label" for="description">Описание</label>
                                 <div class="controls">
-                                    <textarea id="description" name="description" class="span12">{{ old('description') }}</textarea>
+                                    <textarea id="description" name="description" class="span12" style="height: 300px;">{{ old('description') }}</textarea>
                                 </div>
                             </div>
 

@@ -1,8 +1,6 @@
 @extends('layout.admin.main')
 
 @section('addstyle')
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/adm/file-upload/css/style.css">
     <link rel="stylesheet" href="/adm/file-upload/css/jquery.fileupload.css">
 @endsection
 
@@ -155,7 +153,7 @@
                             <div class="control-group{{ $errors->has('description') ? ' error' : '' }}">
                                 <label class="control-label" for="description">Описание</label>
                                 <div class="controls">
-                                    <textarea id="description" name="description" class="span12">{{ $object->description }}</textarea>
+                                    <textarea id="description" name="description" class="span12" style="height: 300px;">{{ $object->description }}</textarea>
                                 </div>
                             </div>
 
@@ -224,9 +222,7 @@
                     <br>
                     <br>
                     <!-- The global progress bar -->
-                    <div id="progress" class="progress">
-                        <div class="progress-bar progress-bar-success"></div>
-                    </div>
+                    <div id="progressbar"></div>
                 </div>
             </div>
         </div>
@@ -237,6 +233,7 @@
     <script>
         var object_id = {{ $object->id }};
     </script>
+    <script src="adm/assets/jui/jquery.ui.touch-punch.min.js"></script>
     <script src="/adm/file-upload/js/vendor/jquery.ui.widget.js"></script>
     <script src="/adm/file-upload/js/jquery.iframe-transport.js"></script>
     <script src="/adm/file-upload/js/jquery.fileupload.js"></script>
