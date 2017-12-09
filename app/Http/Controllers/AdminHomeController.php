@@ -197,6 +197,27 @@ class AdminHomeController extends Controller
         return redirect('admin/editobject/' . $object->id);
     }
 
+    public function addPostImage(Request $request)
+    {
+        $object = Object::find($request->id);
+
+        if (! $object) {
+            abort(404);
+        }
+
+        $files = [];
+        foreach ($request->photos as $file) {
+            $files[] = $object->addImage($file);
+        }
+
+        $object->last_update_date = time();
+        $object->save();
+
+        return response()->json([
+            'files' => $files
+        ]);
+    }
+
     public function delImage(Request $request) {
         $object = Object::find($request->id);
 

@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::get('/admin/cms/contact', 'AdminCmsController@contact');
     Route::post('/admin/cms/contact', 'AdminCmsController@contactPost');
+    Route::post('/admin/addpostimage', 'AdminHomeController@addPostImage');
 });
 
 Route::auth();

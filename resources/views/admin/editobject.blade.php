@@ -1,5 +1,11 @@
 @extends('layout.admin.main')
 
+@section('addstyle')
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/adm/file-upload/css/style.css">
+    <link rel="stylesheet" href="/adm/file-upload/css/jquery.fileupload.css">
+@endsection
+
 @section('content')
     <div id="main-header" class="page-header">
         <ul class="breadcrumb">
@@ -190,23 +196,37 @@
                     <span class="title">Фотографии</span>
                 </div>
                 <div class="widget-content">
-                    <div class="row-fluid">
+                    <div class="row-fluid" id="photos-here">
                         @if(count($images) == 0)
-                        <p class="alert alert-info">Нет фотографий</p>
+                        <p id="no-photo-alert" class="alert alert-info">Нет фотографий</p>
                         @endif
                         @foreach($images as $image)
                             <div class="span3">
                                 <img src="/photo/{{ $object->id }}/{{ $image->id }}.{{ $image->name }}" style="height: 100px;" />
-                                <p><a href="#" class="j-btn-del-image" data-object-id="{{ $object->id }}" data-image-id="{{ $image->id }}">удалить</a></p>
+                                <p><a href="#" data-object-id="{{ $object->id }}" data-image-id="{{ $image->id }}" onclick="return deleteImage(this)">удалить</a></p>
                             </div>
                         @endforeach
                     </div>
+                    {{--
                     <form method="post" action="/admin/addimage" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="id" value="{{ $object->id }}">
                         <input type="file" name="image" />
                         <button type="submit" class="btn btn-primary">Сохранить</button>
                     </form>
+                    --}}
+                    <span class="btn btn-success fileinput-button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Выберите изображения...</span>
+                                        <!-- The file input field used as target for the file upload widget -->
+                        <input id="fileupload" type="file" name="photos[]" multiple>
+                    </span>
+                    <br>
+                    <br>
+                    <!-- The global progress bar -->
+                    <div id="progress" class="progress">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -214,5 +234,12 @@
 @endsection
 
 @section('addscript')
+    <script>
+        var object_id = {{ $object->id }};
+    </script>
+    <script src="/adm/file-upload/js/vendor/jquery.ui.widget.js"></script>
+    <script src="/adm/file-upload/js/jquery.iframe-transport.js"></script>
+    <script src="/adm/file-upload/js/jquery.fileupload.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="/adm/js/addobject.js?v={{ config('app.script_version') }}"></script>
 @endsection

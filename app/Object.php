@@ -86,7 +86,10 @@ class Object extends Model
 
         if ($size[0] < 820) {
             $file->move($dir, $image->id . '.' . $image->name);
-            return true;
+            return [
+                'id' => $image->id,
+                'name' => $this->id . '/' . $image->id . '.' . $image->name
+            ];
         }
 
         $oldimg = false;
@@ -127,6 +130,11 @@ class Object extends Model
 
         $image->name = 'jpg';
         $image->save();
+
+        return [
+            'id' => $image->id,
+            'name' => $this->id . '/' . $image->id . '.jpg'
+        ];
     }
 
     public function delImage($id) {
