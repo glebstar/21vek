@@ -19,7 +19,9 @@
 
     <div id="main-content">
         <div class="row-fluid">
-            Фид: <a href="{{ config('app.url') }}/21vek-an-feed.xml" target="_blank">{{ config('app.url') }}/21vek-an-feed.xml</a>
+            Фид: <br />
+            <a href="{{ config('app.url') }}/21vek-an-feed.xml" target="_blank">{{ config('app.url') }}/21vek-an-feed.xml</a><br />
+            <a href="{{ config('app.url') }}/21vek-an-feed-cian.xml" target="_blank">{{ config('app.url') }}/21vek-an-feed-cian.xml</a>
         </div>
         <div class="row-fluid">
             <a href="/admin/feed/gen" class="btn btn-success">Перегенерировать</a>

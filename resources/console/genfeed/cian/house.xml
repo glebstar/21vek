@@ -1,0 +1,9 @@
+<TotalArea>--area--</TotalArea>
+<Land>
+    <Area>--landarea--</Area>
+    <AreaUnitType>sotka</AreaUnitType>
+</Land>
+<Building>
+    <FloorsCount>--floors--</FloorsCount>
+    <BuildYear>--year--</BuildYear>
+</Building>

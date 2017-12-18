@@ -1,0 +1,19 @@
+<object>
+    <Category>--category--</Category>
+    <ExternalId>--id--</ExternalId>
+    <Description>--description--</Description>
+    <Address>--address--</Address>
+    --cadastral--
+    <Phones>
+        <PhoneSchema>
+            <CountryCode>+7</CountryCode>
+            <Number>--phone--</Number>
+        </PhoneSchema>
+    </Phones>
+    --photos--
+    <BargainTerms>
+        <Price>--price--</Price>
+        <Currency>rur</Currency>
+    </BargainTerms>
+    --body--
+</object>

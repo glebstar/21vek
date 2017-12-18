@@ -290,5 +290,97 @@ class GenFeed extends Command
         }
 
         file_put_contents(PATH_TO_FEED, $file);
+
+        // генерация фида для Циан
+        define('PATH_TO_FEED_CIAN', base_path() . '/public/21vek-an-feed-cian.xml');
+        $file = file_get_contents (base_path() . '/resources/console/genfeed/cian/index.xml');
+
+        $objs = '';
+
+        foreach ($objects as $object) {
+            $obj = file_get_contents (base_path() . '/resources/console/genfeed/cian/object.xml');
+            $images = Image::where('object_id', $object->id)->orderBy('id')->get();
+
+            if ($object->category == 'квартира' || $object->category == 'дом') {
+                $obj = str_replace('--id--', $object->id, $obj);
+
+                $description = str_replace([
+                    '"', '&', '>', '<', '\''
+                ], [
+                    '&quot;', '&amp;', '&gt;', '&lt;', '&apos;'
+                ], $object->description);
+                $obj = str_replace('--description--', $description, $obj);
+
+                $address = str_replace([
+                    '"', '&', '>', '<', '\''
+                ], [
+                    '&quot;', '&amp;', '&gt;', '&lt;', '&apos;'
+                ], $object->address);
+                $obj = str_replace('--address--', 'Республика Бурятия, г. Улан-Удэ, ' . $address, $obj);
+
+                if ($object->cadastral_number) {
+                    $obj = str_replace('--cadastral--', '<CadastralNumber>' . $object->cadastral_number . '</CadastralNumber>', $obj);
+                } else {
+                    $obj = str_replace('--cadastral--', '', $obj);
+                }
+
+                $user = User::find($object->user_id);
+                $phone = $object->phone ? $object->phone : $user->phone;
+                $phone = preg_replace('/^\+7/', '', $phone);
+                $obj = str_replace('--phone--', $phone, $obj);
+
+                $imgSet = '';
+                if ($images) {
+                    $imgSet = '<Photos>';
+                }
+                $i = 0;
+                foreach ($images as $image) {
+                    $i++;
+                    $isDefault = 1 == $i ? 'true' : 'false';
+                    $imgSet .= '<PhotoSchema><FullUrl>' . config('app.url') . '/photo/' . $object->id . '/' . $image->id . '.' . $image->name . '</FullUrl><IsDefault>' . $isDefault. "</IsDefault></PhotoSchema>\n";
+                }
+                if ($images) {
+                    $imgSet .= '</Photos>';
+                }
+                $obj = str_replace('--photos--', $imgSet, $obj);
+
+                $obj = str_replace('--price--', $object->price, $obj);
+
+                $body = '';
+
+                if ($object->category == 'квартира') {
+                    $obj = str_replace('--category--', 'flatSale', $obj);
+                    $body = file_get_contents (base_path() . '/resources/console/genfeed/cian/apartment.xml');
+
+                    $body = str_replace('--rooms--', $object->rooms, $body);
+                    $body = str_replace('--area--', $object->area, $body);
+                    $body = str_replace('--floor--', $object->floor, $body);
+                    $body = str_replace('--floors--', $object->floors_total, $body);
+                }
+
+                if ($object->category == 'дом') {
+                    $obj = str_replace('--category--', 'houseSale', $obj);
+                    $body = file_get_contents (base_path() . '/resources/console/genfeed/cian/house.xml');
+
+                    $body = str_replace('--area--', $object->area, $body);
+                    $body = str_replace('--landarea--', $object->lot_area, $body);
+
+                    $body = str_replace('--floors--', $object->floors_total, $body);
+                    $body = str_replace('--year--', $object->built_year, $body);
+                }
+
+                $obj = str_replace('--body--', $body, $obj);
+
+                $objs .= $obj;
+            }
+        }
+
+        $file = str_replace('--objects--', $objs, $file);
+
+        if ( file_exists(PATH_TO_FEED_CIAN) ) {
+            unlink(PATH_TO_FEED_CIAN);
+        }
+
+        file_put_contents(PATH_TO_FEED_CIAN, $file);
     }
 }

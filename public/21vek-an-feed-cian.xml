@@ -1,0 +1,107 @@
+<feed>
+    <feed_version>2</feed_version>
+    <object>
+    <Category>flatSale</Category>
+    <ExternalId>1</ExternalId>
+    <Description>Блам, блам</Description>
+    <Address>Республика Бурятия, г. Улан-Удэ, Рылеева, 5</Address>
+    
+    <Phones>
+        <PhoneSchema>
+            <CountryCode>+7</CountryCode>
+            <Number>9025637055</Number>
+        </PhoneSchema>
+    </Phones>
+    <Photos></Photos>
+    <BargainTerms>
+        <Price>3200000</Price>
+        <Currency>rur</Currency>
+    </BargainTerms>
+    <FlatRoomsCount>3</FlatRoomsCount>
+<TotalArea>58</TotalArea>
+<FloorNumber>2</FloorNumber>
+<Building>
+    <FloorsCount>5</FloorsCount>
+</Building>
+</object><object>
+    <Category>flatSale</Category>
+    <ExternalId>2</ExternalId>
+    <Description>Бла, блум</Description>
+    <Address>Республика Бурятия, г. Улан-Удэ, Пушкина, 21</Address>
+    
+    <Phones>
+        <PhoneSchema>
+            <CountryCode>+7</CountryCode>
+            <Number>9025637055</Number>
+        </PhoneSchema>
+    </Phones>
+    <Photos></Photos>
+    <BargainTerms>
+        <Price>2800000</Price>
+        <Currency>rur</Currency>
+    </BargainTerms>
+    <FlatRoomsCount>2</FlatRoomsCount>
+<TotalArea>45</TotalArea>
+<FloorNumber>1</FloorNumber>
+<Building>
+    <FloorsCount>5</FloorsCount>
+</Building>
+</object><object>
+    <Category>flatSale</Category>
+    <ExternalId>3</ExternalId>
+    <Description>идф идф</Description>
+    <Address>Республика Бурятия, г. Улан-Удэ, Маяковского, 1</Address>
+    
+    <Phones>
+        <PhoneSchema>
+            <CountryCode>+7</CountryCode>
+            <Number>9025637055</Number>
+        </PhoneSchema>
+    </Phones>
+    <Photos><PhotoSchema><FullUrl>http://21vek.app/photo/3/62.jpg</FullUrl><IsDefault>true</IsDefault></PhotoSchema>
+<PhotoSchema><FullUrl>http://21vek.app/photo/3/63.jpeg</FullUrl><IsDefault>false</IsDefault></PhotoSchema>
+<PhotoSchema><FullUrl>http://21vek.app/photo/3/64.jpg</FullUrl><IsDefault>false</IsDefault></PhotoSchema>
+</Photos>
+    <BargainTerms>
+        <Price>2800000</Price>
+        <Currency>rur</Currency>
+    </BargainTerms>
+    <FlatRoomsCount>1</FlatRoomsCount>
+<TotalArea>20</TotalArea>
+<FloorNumber>2</FloorNumber>
+<Building>
+    <FloorsCount>5</FloorsCount>
+</Building>
+</object><object>
+    <Category>houseSale</Category>
+    <ExternalId>4</ExternalId>
+    <Description>ПРодаю хороший дом с участком
+Есть вода</Description>
+    <Address>Республика Бурятия, г. Улан-Удэ, Дарвина, 87</Address>
+    
+    <Phones>
+        <PhoneSchema>
+            <CountryCode>+7</CountryCode>
+            <Number>9025655320</Number>
+        </PhoneSchema>
+    </Phones>
+    <Photos><PhotoSchema><FullUrl>http://21vek.app/photo/4/65.jpg</FullUrl><IsDefault>true</IsDefault></PhotoSchema>
+<PhotoSchema><FullUrl>http://21vek.app/photo/4/66.jpeg</FullUrl><IsDefault>false</IsDefault></PhotoSchema>
+<PhotoSchema><FullUrl>http://21vek.app/photo/4/67.jpg</FullUrl><IsDefault>false</IsDefault></PhotoSchema>
+<PhotoSchema><FullUrl>http://21vek.app/photo/4/68.jpeg</FullUrl><IsDefault>false</IsDefault></PhotoSchema>
+</Photos>
+    <BargainTerms>
+        <Price>5700000</Price>
+        <Currency>rur</Currency>
+    </BargainTerms>
+    <TotalArea>108</TotalArea>
+<Land>
+    <Area>7</Area>
+    <AreaUnitType>sotka</AreaUnitType>
+</Land>
+<Building>
+    <FloorsCount>1</FloorsCount>
+    <BuildYear>2007</BuildYear>
+</Building>
+</object>
+</feed>
