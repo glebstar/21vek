@@ -111,7 +111,7 @@ class Object extends Model
 
         imagecopyresampled($newimg, $oldimg, 0, 0, 0, 0, 800, $newHeight, $size[0], $size[1]);
 
-        $exif = exif_read_data($filePath);
+        $exif = @exif_read_data($filePath);
         if(!empty($exif['Orientation'])) {
             switch($exif['Orientation']) {
                 case 8:
