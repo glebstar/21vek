@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Image;
+use App\Document;
 
 class Object extends Model
 {
@@ -148,5 +149,44 @@ class Object extends Model
             unlink($dir . '/' . $image->id . '.' . $image->name);
         }
         Image::destroy($id);
+    }
+
+    public function addDocument(UploadedFile $file, $documentName)
+    {
+        $dir = public_path() . '/documents/' . $this->id;
+        $filePath = $file->getPath() . '/' . $file->getFilename();
+        $size = getimagesize($filePath);
+        if (! $size) {
+            return false;
+        }
+
+        $document = new Document();
+        $document->object_id = $this->id;
+        $document->name = $file->getClientOriginalExtension();
+        $document->documentname = $documentName;
+        $document->save();
+
+        if (!file_exists($dir)) {
+            mkdir($dir);
+        }
+
+        $file->move($dir, $document->id . '.' . $document->name);
+        return [
+            'id' => $document->id,
+            'name' => $this->id . '/' . $document->id . '.' . $document->name
+        ];
+    }
+
+    public function delDocument($id) {
+        $document = Document::find($id);
+        if (!$document) {
+            return false;
+        }
+
+        $dir = public_path() . '/documents/' . $this->id;
+        if(file_exists($dir . '/' . $document->id . '.' . $document->name)) {
+            unlink($dir . '/' . $document->id . '.' . $document->name);
+        }
+        Document::destroy($id);
     }
 }

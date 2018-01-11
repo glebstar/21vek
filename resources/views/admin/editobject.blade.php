@@ -188,7 +188,6 @@
         </div>
 
         <div class="row-fluid">
-
             <div class="widget">
                 <div class="widget-header">
                     <span class="title">Фотографии</span>
@@ -205,14 +204,7 @@
                             </div>
                         @endforeach
                     </div>
-                    {{--
-                    <form method="post" action="/admin/addimage" enctype="multipart/form-data">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="id" value="{{ $object->id }}">
-                        <input type="file" name="image" />
-                        <button type="submit" class="btn btn-primary">Сохранить</button>
-                    </form>
-                    --}}
+
                     <span class="btn btn-success fileinput-button">
                         <i class="glyphicon glyphicon-plus"></i>
                         <span>Выберите изображения...</span>
@@ -223,6 +215,50 @@
                     <br>
                     <!-- The global progress bar -->
                     <div id="progressbar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="widget">
+                <div class="widget-header">
+                    <a name="documents"></a>
+                    <span class="title">Документы</span>
+                </div>
+                <div class="widget-content">
+                    <div class="row-fluid" id="photos-here">
+                        @if(count($documents) == 0)
+                            <p id="no-photo-alert" class="alert alert-info">Нет документов</p>
+                        @endif
+                        @foreach($documents as $document)
+                            <div class="span3">
+                                <img src="/documents/{{ $object->id }}/{{ $document->id }}.{{ $document->name }}" style="height: 100px;" />
+                                <p>{{ $document->documentname }}</p>
+                                <p><a href="#" data-object-id="{{ $object->id }}" data-document-id="{{ $document->id }}" onclick="return deleteDocument(this)">удалить</a></p>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="row-fluid">
+                        <p><span class="alert-danger">Внимание!!!</span> Не используйте в именах документов кавычки</p>
+                        <form method="POST" action="/admin/adddocument" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <input type="hidden" value="{{ $object->id }}" name="id" />
+                            <input type="file" name="document" />
+                            Имя: <input type="text" class="form-control" style="margin-bottom: 0;" name="documentname" />
+                            <button type="submit" class="btn btn-default">Отправить</button>
+                            @if($errors->first('name'))<p class="help-block" style="color: #f00;">{{ $errors->first('name') }}</p> @endif
+                        </form>
+                    </div>
+
+                    {{--
+                    <span class="btn btn-success fileinput-button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Выберите изображения...</span>
+                        <!-- The file input field used as target for the file upload widget -->
+                        <input id="fileupload" type="file" name="photos[]" multiple>
+                    </span>
+                    --}}
                 </div>
             </div>
         </div>

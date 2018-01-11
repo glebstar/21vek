@@ -148,3 +148,21 @@ function deleteImage(obj) {
 
     return false;
 }
+
+function deleteDocument(obj) {
+    if(confirm('Удалить документ?')) {
+        var submitdata = {
+            _token: csrf_token,
+            id: $(obj).attr('data-object-id'),
+            document_id: $(obj).attr('data-document-id')
+        };
+
+        var _self = $(obj);
+
+        $.post('/admin/deldocument', submitdata, function (data) {
+            _self.closest('.span3').remove();
+        }, 'json');
+    }
+
+    return false;
+}

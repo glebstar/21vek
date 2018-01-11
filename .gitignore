@@ -8,4 +8,7 @@ Homestead.json
 /public/robots.txt
 /public/photo/*
 !/public/photo/.gitempty
+/public/documents/*
+!/public/documents/.gitempty
 /public/21vek-an-feed.xml
+/public/21vek-an-feed-cian.xml

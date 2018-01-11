@@ -36,5 +36,8 @@
     <description>--description--</description>
     <floors-total>--floors_total--</floors-total>
     --img--
+    <documents>
+        --doc--
+    </documents>
     --built_year--
 </offer>

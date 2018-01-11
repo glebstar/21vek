@@ -8,6 +8,7 @@ use Auth;
 use DB;
 use App\Object;
 use App\Image;
+use App\Document;
 use Artisan;
 
 class AdminHomeController extends Controller
@@ -61,6 +62,7 @@ class AdminHomeController extends Controller
         return view('admin.editobject', [
             'object' => $object,
             'images' => Image::where('object_id', $object->id)->orderBy('id')->get(),
+            'documents' => Document::where('object_id', $object->id)->orderBy('id')->get(),
             'tab' => 'main'
         ]);
     }
@@ -197,6 +199,28 @@ class AdminHomeController extends Controller
         return redirect('admin/editobject/' . $object->id);
     }
 
+    public function addDocument(Request $request)
+    {
+        $object = Object::find($request->id);
+
+        if (! $object) {
+            abort(404);
+        }
+
+        $documentName = $request->documentname;
+        if (!$documentName) {
+            return redirect()->back()->withErrors([
+                'name' => 'Имя документа обязательно'
+            ]);
+        }
+
+        $file = $request->file('document');
+
+        $object->addDocument($file, $documentName);
+
+        return redirect('admin/editobject/' . $object->id . '#documents');
+    }
+
     public function addPostImage(Request $request)
     {
         $object = Object::find($request->id);
@@ -228,6 +252,25 @@ class AdminHomeController extends Controller
         }
 
         $object->delImage($request->image_id);
+        $object->last_update_date = time();
+        $object->save();
+
+        return response()->json([
+            'result' => 'ok'
+        ]);
+    }
+
+    public function delDocument(Request $request)
+    {
+        $object = Object::find($request->id);
+
+        if (! $object) {
+            return response()->json([
+                'result' => 'ok'
+            ]);
+        }
+
+        $object->delDocument($request->document_id);
         $object->last_update_date = time();
         $object->save();
 

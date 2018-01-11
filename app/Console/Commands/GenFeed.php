@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Object;
 use App\Image;
+use App\Document;
 use App\User;
 
 class GenFeed extends Command
@@ -53,6 +54,7 @@ class GenFeed extends Command
 
         foreach ($objects as $object) {
             $images = Image::where('object_id', $object->id)->orderBy('id')->get();
+            $documents = Document::where('object_id', $object->id)->orderBy('id')->get();
 
             if ($object->category == 'квартира') {
                 $offer = $offerApartment;
@@ -105,6 +107,13 @@ class GenFeed extends Command
                 }
 
                 $offer = str_replace('--img--', $imgSet, $offer);
+
+                $docSet = '';
+                foreach ($documents as $document) {
+                    $docSet .= '<document name="' . $document->documentname . '" link="' . config('app.url') . '/documents/' . $object->id . '/' . $document->id . '.' . $document->name . '"></document>' . "\n";
+                }
+
+                $offer = str_replace('--doc--', $docSet, $offer);
 
                 $builtYearSet = '';
                 if ($object->built_year) {
@@ -168,6 +177,13 @@ class GenFeed extends Command
 
                 $offer = str_replace('--img--', $imgSet, $offer);
 
+                $docSet = '';
+                foreach ($documents as $document) {
+                    $docSet .= '<document name="' . $document->documentname . '" link="' . config('app.url') . '/documents/' . $object->id . '/' . $document->id . '.' . $document->name . '"></document>' . "\n";
+                }
+
+                $offer = str_replace('--doc--', $docSet, $offer);
+
                 $file .= "\n" . $offer;
             }
 
@@ -221,6 +237,13 @@ class GenFeed extends Command
                 }
 
                 $offer = str_replace('--img--', $imgSet, $offer);
+
+                $docSet = '';
+                foreach ($documents as $document) {
+                    $docSet .= '<document name="' . $document->documentname . '" link="' . config('app.url') . '/documents/' . $object->id . '/' . $document->id . '.' . $document->name . '"></document>' . "\n";
+                }
+
+                $offer = str_replace('--doc--', $docSet, $offer);
 
                 $builtYearSet = '';
                 if ($object->built_year) {
@@ -278,6 +301,13 @@ class GenFeed extends Command
                 }
 
                 $offer = str_replace('--img--', $imgSet, $offer);
+
+                $docSet = '';
+                foreach ($documents as $document) {
+                    $docSet .= '<document name="' . $document->documentname . '" link="' . config('app.url') . '/documents/' . $object->id . '/' . $document->id . '.' . $document->name . '"></document>' . "\n";
+                }
+
+                $offer = str_replace('--doc--', $docSet, $offer);
 
                 $file .= "\n" . $offer;
             }
