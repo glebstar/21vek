@@ -2,6 +2,7 @@
 
 @section('addstyle')
     <link rel="stylesheet" href="/adm/file-upload/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="/adm/magnific/dist/magnific-popup.css">
 @endsection
 
 @section('content')
@@ -232,7 +233,7 @@
                         @endif
                         @foreach($documents as $document)
                             <div class="span3">
-                                <img src="/documents/{{ $object->id }}/{{ $document->id }}.{{ $document->name }}" style="height: 100px;" />
+                                <a class="j-magnific-a" href="/documents/{{ $object->id }}/{{ $document->id }}.{{ $document->name }}"><img src="/documents/{{ $object->id }}/{{ $document->id }}.{{ $document->name }}" style="height: 100px;" /></a>
                                 <p>{{ $document->documentname }}</p>
                                 <p><a href="#" data-object-id="{{ $object->id }}" data-document-id="{{ $document->id }}" onclick="return deleteDocument(this)">удалить</a></p>
                             </div>
@@ -274,5 +275,12 @@
     <script src="/adm/file-upload/js/jquery.iframe-transport.js"></script>
     <script src="/adm/file-upload/js/jquery.fileupload.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="/adm/magnific/dist/jquery.magnific-popup.min.js"></script>
     <script src="/adm/js/addobject.js?v={{ config('app.script_version') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.j-magnific-a').magnificPopup({type:'image'});
+        });
+    </script>
 @endsection
