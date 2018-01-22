@@ -4,11 +4,11 @@
     <div id="main-header" class="page-header">
         <ul class="breadcrumb">
             <li>
-                <i class="icon-home"></i>Главная
+                <a href="/admin"><i class="icon-home"></i>Главная</a>
                 <span class="divider">&raquo;</span>
             </li>
             <li>
-                <a href="/admin">Все объекты</a>
+                Все объекты
             </li>
         </ul>
 
