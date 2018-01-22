@@ -18,6 +18,15 @@
     </div>
 
     <div id="main-content">
+        <div class="control-group">
+            <div class="controls">
+                <div class="input-append">
+                    <input type="text" id="input-search" value="{{ $_q }}"><button type="button" class="btn" id="btn-search">
+                        <i class="icon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="row-fluid">
             <div class="span12 widget">
                 <div class="widget-header">
@@ -59,4 +68,14 @@
 
         </div>
     </div>
+@endsection
+
+@section('addscript')
+    <script>
+        $(document).ready(function () {
+            $('#btn-search').click(function(){
+                location.href = '/admin/?_q=' + $('#input-search').val();
+            });
+        });
+    </script>
 @endsection
