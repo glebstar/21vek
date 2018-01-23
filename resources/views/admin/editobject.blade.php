@@ -151,6 +151,13 @@
                                 </div>
                             </div>
 
+                            <div class="control-group">
+                                <label class="control-label" for="parent-phone">Собственник</label>
+                                <div class="controls">
+                                    <input type="text" id="parent-phone" name="parent_phone" class="span12" value="{{ $object->parent_phone }}">
+                                </div>
+                            </div>
+
                             <div class="control-group{{ $errors->has('description') ? ' error' : '' }}">
                                 <label class="control-label" for="description">Описание</label>
                                 <div class="controls">
