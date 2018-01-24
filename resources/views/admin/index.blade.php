@@ -21,7 +21,7 @@
         <div class="control-group">
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" id="input-search" value="{{ $_q }}"><button type="button" class="btn" id="btn-search">
+                    <input type="text" id="input-search" value="{{ $_q or '' }}"><button type="button" class="btn" id="btn-search">
                         <i class="icon-search"></i>
                     </button>
                 </div>
