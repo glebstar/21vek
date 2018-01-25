@@ -143,6 +143,8 @@ class AdminHomeController extends Controller
         $subLocalityName = 'sub-locality-name';
         $object->sub_locality_name = $request->$subLocalityName;
 
+        $object->is_new_building = $request->is_new_building ? 1 : 0;
+
         $object->address = $request->address;
 
         if ($request->category != 'участок') {

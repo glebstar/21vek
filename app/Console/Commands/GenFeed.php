@@ -379,8 +379,13 @@ class GenFeed extends Command
                 $body = '';
 
                 if ($object->category == 'квартира') {
-                    $obj = str_replace('--category--', 'flatSale', $obj);
-                    $body = file_get_contents (base_path() . '/resources/console/genfeed/cian/apartment.xml');
+                    if ($object->is_new_building) {
+                        $obj = str_replace('--category--', 'newBuildingFlatSale', $obj);
+                    } else {
+                        $obj = str_replace('--category--', 'flatSale', $obj);
+                    }
+                    $body = file_get_contents(base_path() . '/resources/console/genfeed/cian/apartment.xml');
+
 
                     $body = str_replace('--rooms--', $object->rooms, $body);
                     $body = str_replace('--area--', $object->area, $body);

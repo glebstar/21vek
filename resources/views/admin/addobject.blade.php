@@ -41,6 +41,15 @@
                                 </div>
                             </div>
 
+                            <div class="control-group vars new-building">
+                                <label class="control-label">Новостройка</label>
+                                <div class="controls">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="is_new_building" @if(old('is_new_building')) checked="checked" @endif>
+                                    </label>
+                                </div>
+                            </div>
+
                             <div class="control-group">
                                 <label class="control-label" for="sub-locality-name">Район</label>
                                 <div class="controls">

@@ -101,6 +101,7 @@ $(document.ready = function(){
 
 function changeCategory(category) {
     if (category == 'квартира') {
+        $('.new-building').show();
         $('.area').show();
         $('.rooms').show();
         $('.floor').show();
