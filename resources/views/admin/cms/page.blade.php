@@ -8,7 +8,7 @@
     <div id="main-header" class="page-header">
         <ul class="breadcrumb">
             <li>
-                <i class="icon-home"></i>Главная
+                <a href="/admin"><i class="icon-home"></i>Главная</a>
                 <span class="divider">&raquo;</span>
             </li>
             <li>
@@ -16,7 +16,7 @@
                 <span class="divider">&raquo;</span>
             </li>
             <li>
-                <a href="{{ $url }}">{{ $page_title }}</a>
+                {{ $page_title }}
             </li>
         </ul>
 

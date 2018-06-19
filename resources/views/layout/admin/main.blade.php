@@ -152,6 +152,16 @@
                                     </ul>
                                 </li>
 
+                                <li @if($tab == 'phone')class="active" @endif>
+                                    	<span title="Телефон">
+                                    		<i class="icon-phone"></i>
+											<span class="nav-title">Телефон</span>
+                                        </span>
+                                    <ul class="inner-nav">
+                                        <li @if(Request::path() == 'admin/phone/change') class="active" @endif><a href="/admin/phone/change"><i class="icon-pencil"></i> Поменять телефон</a></li>
+                                    </ul>
+                                </li>
+
                                 <!--
                                 <li>
                                     	<span title="Statistic">
