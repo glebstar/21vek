@@ -69,5 +69,5 @@ Route::post('/kuplu-kvartiru', 'KupluController@index');
 
 Route::get('/aaa', function (){
     //Artisan::call('genfeed');
-    dd(\App\Offer::get());
+    //dd(\App\Offer::get());
 });

@@ -39,7 +39,7 @@
                             <tr>
                                 <td>{{ date('d.m.Y H:i', strtotime($offer->created_at)) }}</td>
                                 <td>{{ $offer->phone }}</td>
-                                <td><input class="offer-completed" data-offer-id="{{ $offer->id }}" type="checkbox" @if($offer->is_comleted)checked @endif> </td>
+                                <td><input class="offer-completed" data-offer-id="{{ $offer->id }}" type="checkbox" @if($offer->is_comleted)checked="checked" @endif> </td>
                             </tr>
                         @endforeach
                         </tbody>
