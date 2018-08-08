@@ -55,6 +55,9 @@
                         <input type="submit" class="button special" value="Отправить">
                     </div>
                 </div>
+                <div class="row">
+                    <p>Отправляя телефон вы даёте разрешение на обработку персональных данных</p>
+                </div>
             </form>
         </div>
 
