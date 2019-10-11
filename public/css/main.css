@@ -10,3 +10,14 @@
 .idx-object {
 	text-align: center;
 }
+
+.filters {
+	text-align: left;
+	margin-bottom: 20px;
+	float: left;
+}
+
+.input-group {
+	float: left;
+	padding-right: 15px;
+}

@@ -40,12 +40,42 @@ class HomeController extends Controller
             $query->where('category', 'участок');
         }
 
+        if ($request->area == 1) {
+            $query->where('sub_locality_name', 'Железнодорожный');
+        }
+
+        if ($request->area == 2) {
+            $query->where('sub_locality_name', 'Советский');
+        }
+
+        if ($request->area == 3) {
+            $query->where('sub_locality_name', 'Октябрьский');
+        }
+
+        if ($request->rooms == 1) {
+            $query->where('rooms', 1);
+        }
+
+        if ($request->rooms == 2) {
+            $query->where('rooms', 2);
+        }
+
+        if ($request->rooms == 3) {
+            $query->where('rooms', 3);
+        }
+
+        if ($request->rooms == 4) {
+            $query->where('rooms', '>', 3);
+        }
+
         $objects = $query->paginate(8);
 
         return view('home.index', [
             'objects' => $objects,
             'category' => $category,
-            'title' => $category
+            'title' => $category,
+            'area' => $request->area,
+            'rooms' => $request->rooms,
         ]);
     }
 
