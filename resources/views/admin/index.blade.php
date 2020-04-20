@@ -54,7 +54,7 @@
                         <tr>
                             <td><a href="/admin/editobject/{{ $object->id }}">{{ $object->category }}</a></td>
                             <td>{{ $object->sub_locality_name }}</td>
-                            <td>{{ $object->address }}</td>
+                            <td><b>{{ $object->address }}</b></td>
                             <td>@if($object->rooms){{ $object->rooms }}@endif</td>
                             <td>@if($object->floor){{ $object->floor }}@endif</td>
                             <td>@if($object->floors_total){{ $object->floors_total }}@endif</td>
