@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Object;
+use DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('*', function($view){
+            $view->with([
+                'countObj' => Object::select(DB::raw('count(*) as cnt'))
+                    ->where('is_trash', 0)
+                    ->first()->cnt
+            ]);
+        });
     }
 
     /**

@@ -44,6 +44,7 @@
                             <th>Комнат</th>
                             <th>Этаж</th>
                             <th>Этажей</th>
+                            <th>Цена</th>
                             <th>Фото</th>
                             <th>Собственник</th>
                         </tr>
@@ -57,6 +58,7 @@
                             <td>@if($object->rooms){{ $object->rooms }}@endif</td>
                             <td>@if($object->floor){{ $object->floor }}@endif</td>
                             <td>@if($object->floors_total){{ $object->floors_total }}@endif</td>
+                            <td>{{ $object->price }}</td>
                             <td><a href="/admin/editobject/{{ $object->id }}">@if(!$object->image_name)<img src="/img/no-image.png" style="height: 100px;" />@else <img src="/photo/{{ $object->id }}/{{ $object->image_name }}" style="height: 100px;" /> @endif</a></td>
                             <td>{{ $object->parent_phone }}</td>
                         </tr>
