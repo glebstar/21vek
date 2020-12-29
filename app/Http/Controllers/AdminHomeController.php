@@ -23,15 +23,23 @@ class AdminHomeController extends Controller
         return view('admin.index', [
             'objects' => $objectQ->paginate(10),
             'tab' => 'main',
-            '_q' => $request->_q
+            '_q' => $request->_q,
+            'is_archive' => false,
         ]);
     }
 
-    public function archive() {
+    public function archive(Request $request) {
+        $objectQ = Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY id LIMIT 1) AS image_name"))->
+        where('is_trash', 1)->orderBy('creation_date', 'desc');
+        if ($request->_q) {
+            $objectQ->where('address', 'like', '%' . $request->_q . '%');
+        }
+
         return view('admin.index', [
-            'objects' => Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY id LIMIT 1) AS image_name"))->
-            where('is_trash', 1)->orderBy('creation_date', 'desc')->paginate(10),
-            'tab' => 'main'
+            'objects' => $objectQ->paginate(10),
+            'tab' => 'main',
+            '_q' => $request->_q,
+            'is_archive' => true,
         ]);
     }
 

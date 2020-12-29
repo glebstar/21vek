@@ -8,12 +8,12 @@
                 <span class="divider">&raquo;</span>
             </li>
             <li>
-                Все объекты
+                Все объекты @if($is_archive) - Архив @endif
             </li>
         </ul>
 
         <h1 id="main-heading">
-            Все объекты
+            Все объекты @if($is_archive) - Архив @endif
         </h1>
     </div>
 
@@ -77,9 +77,15 @@
 @section('addscript')
     <script>
         $(document).ready(function () {
+            @if(!$is_archive)
             $('#btn-search').click(function(){
                 location.href = '/admin/?_q=' + $('#input-search').val();
             });
+            @else
+            $('#btn-search').click(function(){
+                location.href = '/admin/archive?_q=' + $('#input-search').val();
+            });
+            @endif
         });
     </script>
 @endsection
