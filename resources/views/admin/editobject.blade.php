@@ -214,12 +214,14 @@
                         @if(count($images) == 0)
                         <p id="no-photo-alert" class="alert alert-info">Нет фотографий</p>
                         @endif
+                        <div id="my-photos">
                         @foreach($images as $image)
-                            <div class="span3">
+                            <div class="span3 my-img" data-image-id="{{ $image->id }}">
                                 <img src="/photo/{{ $object->id }}/{{ $image->id }}.{{ $image->name }}" style="height: 100px;" />
                                 <p><a href="#" data-object-id="{{ $object->id }}" data-image-id="{{ $image->id }}" onclick="return deleteImage(this)">удалить</a></p>
                             </div>
                         @endforeach
+                        </div>
                     </div>
 
                     <span class="btn btn-success fileinput-button">
@@ -286,7 +288,7 @@
     <script>
         var object_id = {{ $object->id }};
     </script>
-    <script src="adm/assets/jui/jquery.ui.touch-punch.min.js"></script>
+    <script src="/adm/assets/jui/jquery.ui.touch-punch.min.js"></script>
     <script src="/adm/file-upload/js/vendor/jquery.ui.widget.js"></script>
     <script src="/adm/file-upload/js/jquery.iframe-transport.js"></script>
     <script src="/adm/file-upload/js/jquery.fileupload.js"></script>

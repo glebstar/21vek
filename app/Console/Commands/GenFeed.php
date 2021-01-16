@@ -53,7 +53,7 @@ class GenFeed extends Command
         $objects = Object::where('is_trash', 0)->orderBy('id')->get();
 
         foreach ($objects as $object) {
-            $images = Image::where('object_id', $object->id)->orderBy('id')->get();
+            $images = Image::where('object_id', $object->id)->orderBy('sort')->orderBy('id')->get();
             $documents = Document::where('object_id', $object->id)->orderBy('id')->get();
 
             if ($object->category == 'квартира') {

@@ -11,6 +11,8 @@ $(document.ready = function(){
         changeCategory($(this).val());
     });
 
+    myDraggable();
+
     $('.j-btn-del-image').off('click');
     $('.j-btn-del-image').on('click', function () {
         if(confirm('Удалить фотографию?')) {
@@ -80,7 +82,8 @@ $(document.ready = function(){
         done: function (e, data) {
             $('#no-photo-alert').hide();
             $.each(data.result.files, function (index, file) {
-                $('#photos-here').append('<div class="span3"><img src="/photo/' + file.name + '" style="height: 100px;" /><p><a href="#" data-object-id="' + object_id +'" data-image-id="' + file.id +'" onclick="return deleteImage(this)">удалить</a></p></div>');
+                $('#my-photos').append('<div class="span3 my-img"><img src="/photo/' + file.name + '" style="height: 100px;" /><p><a href="#" data-object-id="' + object_id +'" data-image-id="' + file.id +'" onclick="return deleteImage(this)">удалить</a></p></div>');
+                myDraggable();
             });
         },
         progressall: function (e, data) {
@@ -166,4 +169,20 @@ function deleteDocument(obj) {
     }
 
     return false;
+}
+
+function myDraggable()
+{
+    $('#my-photos').sortable({
+        stop: function (event, ui) {
+            let items = [];
+            $('.my-img').each(function (){
+                items.push($(this).data('image-id'));
+            });
+            $.post('/admin/sortimages', {_token:csrf_token, items: items}, function (data) {
+                return false;
+            });
+        }
+    });
+    $('#my-photos').disableSelection();
 }

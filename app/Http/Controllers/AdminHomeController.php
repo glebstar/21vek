@@ -14,7 +14,7 @@ use Artisan;
 class AdminHomeController extends Controller
 {
     public function index(Request $request) {
-        $objectQ = Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY id LIMIT 1) AS image_name"))->
+        $objectQ = Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY sort, id LIMIT 1) AS image_name"))->
         where('is_trash', 0)->orderBy('creation_date', 'desc');
         if ($request->_q) {
             $objectQ->where('address', 'like', '%' . $request->_q . '%');
@@ -29,7 +29,7 @@ class AdminHomeController extends Controller
     }
 
     public function archive(Request $request) {
-        $objectQ = Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY id LIMIT 1) AS image_name"))->
+        $objectQ = Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY sort, id LIMIT 1) AS image_name"))->
         where('is_trash', 1)->orderBy('creation_date', 'desc');
         if ($request->_q) {
             $objectQ->where('address', 'like', '%' . $request->_q . '%');
@@ -75,7 +75,7 @@ class AdminHomeController extends Controller
 
         return view('admin.editobject', [
             'object' => $object,
-            'images' => Image::where('object_id', $object->id)->orderBy('id')->get(),
+            'images' => Image::where('object_id', $object->id)->orderBy('sort')->orderBy('id')->get(),
             'documents' => Document::where('object_id', $object->id)->orderBy('id')->get(),
             'tab' => 'main'
         ]);
@@ -341,5 +341,17 @@ class AdminHomeController extends Controller
         Artisan::call('genfeed');
 
         return redirect('admin/feed');
+    }
+
+    public function sortImages(Request $request)
+    {
+        $items = $request->items;
+        $cnt = 0;
+        foreach ($items as $item) {
+            $image = Image::find($item);
+            $image->sort = $cnt;
+            $image->save();
+            $cnt++;
+        }
     }
 }
