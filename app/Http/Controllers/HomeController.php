@@ -17,7 +17,7 @@ class HomeController extends Controller
     {
         $category = 'Продажа недвижимости в Улан-Удэ';
 
-        $query = Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY id LIMIT 1) AS image_name"))
+        $query = Object::select('objects.*', DB::raw("(SELECT CONCAT(i.id, '.', i.name) FROM images i WHERE i.object_id = objects.id ORDER BY sort, id LIMIT 1) AS image_name"))
             ->where('is_trash', 0)->orderBy('creation_date', 'desc');
 
         if ($request->path() == 'prodaja-kvartir-v-ulan-ude') {
@@ -118,7 +118,7 @@ class HomeController extends Controller
             'category' => $category,
             'title' => $title,
             'user' => User::find($object->user_id),
-            'images' => Image::where('object_id', $object->id)->orderBy('id')->get()
+            'images' => Image::where('object_id', $object->id)->orderBy('sort')->orderBy('id')->get()
         ]);
     }
     

@@ -82,7 +82,7 @@ $(document.ready = function(){
         done: function (e, data) {
             $('#no-photo-alert').hide();
             $.each(data.result.files, function (index, file) {
-                $('#my-photos').append('<div class="span3 my-img"><img src="/photo/' + file.name + '" style="height: 100px;" /><p><a href="#" data-object-id="' + object_id +'" data-image-id="' + file.id +'" onclick="return deleteImage(this)">удалить</a></p></div>');
+                $('#my-photos').append('<div class="span3 my-img" data-image-id="' + file.id +'"><img src="/photo/' + file.name + '" style="height: 100px;" /><p><a href="#" data-object-id="' + object_id +'" data-image-id="' + file.id +'" onclick="return deleteImage(this)">удалить</a></p></div>');
                 myDraggable();
             });
         },
