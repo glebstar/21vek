@@ -11,6 +11,14 @@ $(document.ready = function(){
         changeCategory($(this).val());
     });
 
+    $('#sub-locality-name').on('change', function () {
+         if ($(this).val() == 'Другой') {
+            $('.o-region').show();
+         } else {
+             $('.o-region').hide();
+         }
+    });
+
     myDraggable();
 
     $('.j-btn-del-image').off('click');

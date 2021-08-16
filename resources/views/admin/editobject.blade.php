@@ -72,7 +72,29 @@
                                         <option value="Железнодорожный" @if($object->sub_locality_name == 'Железнодорожный') selected @endif >Железнодорожный</option>
                                         <option value="Советский" @if($object->sub_locality_name == 'Советский') selected @endif >Советский</option>
                                         <option value="Октябрьский" @if($object->sub_locality_name == 'Октябрьский') selected @endif >Октябрьский</option>
+                                        <option value="Другой" @if($object->sub_locality_name == 'Другой') selected @endif >Другой</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="o-region control-group {{ $errors->has('o-region') ? ' error' : '' }}" @if($object->sub_locality_name != 'Другой') style="display: none" @endif>
+                                <label class="control-label" for="o-region">Регион (область)</label>
+                                <div class="controls">
+                                    <input type="text" id="o-region" name="o-region" class="span12" value="{{ $object->o_region }}">
+                                </div>
+                            </div>
+
+                            <div class="o-region control-group {{ $errors->has('o-locality') ? ' error' : '' }}" @if($object->sub_locality_name != 'Другой') style="display: none" @endif>
+                                <label class="control-label" for="o-locality">Город</label>
+                                <div class="controls">
+                                    <input type="text" id="o-locality" name="o-locality" class="span12" value="{{ $object->o_locality }}">
+                                </div>
+                            </div>
+
+                            <div class="o-region control-group {{ $errors->has('o-sub-locality') ? ' error' : '' }}" @if($object->sub_locality_name != 'Другой') style="display: none" @endif>
+                                <label class="control-label" for="o-sub-locality">Район</label>
+                                <div class="controls">
+                                    <input type="text" id="o-sub-locality" name="o-sub-locality" class="span12" value="{{ $object->o_sub_locality }}">
                                 </div>
                             </div>
 

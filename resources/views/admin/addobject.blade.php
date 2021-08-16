@@ -57,7 +57,29 @@
                                         <option value="Железнодорожный" @if(old('sub-locality-name') == 'Железнодорожный') selected @endif >Железнодорожный</option>
                                         <option value="Советский" @if(old('sub-locality-name') == 'Советский') selected @endif >Советский</option>
                                         <option value="Октябрьский" @if(old('sub-locality-name') == 'Октябрьский') selected @endif >Октябрьский</option>
+                                        <option value="Другой" @if(old('sub-locality-name') == 'Другой') selected @endif >Другой</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="o-region control-group {{ $errors->has('o-region') ? ' error' : '' }}" @if(old('sub-locality-name') != 'Другой') style="display: none" @endif>
+                                <label class="control-label" for="o-region">Регион (область)</label>
+                                <div class="controls">
+                                    <input type="text" id="o-region" name="o-region" class="span12" value="{{ old('o-region') }}">
+                                </div>
+                            </div>
+
+                            <div class="o-region control-group {{ $errors->has('o-locality') ? ' error' : '' }}" @if(old('sub-locality-name') != 'Другой') style="display: none" @endif>
+                                <label class="control-label" for="o-locality">Город</label>
+                                <div class="controls">
+                                    <input type="text" id="o-locality" name="o-locality" class="span12" value="{{ old('o-locality') }}">
+                                </div>
+                            </div>
+
+                            <div class="o-region control-group {{ $errors->has('o-sub-locality') ? ' error' : '' }}" @if(old('sub-locality-name') != 'Другой') style="display: none" @endif>
+                                <label class="control-label" for="o-sub-locality">Район</label>
+                                <div class="controls">
+                                    <input type="text" id="o-sub-locality" name="o-sub-locality" class="span12" value="{{ old('o-sub-locality') }}">
                                 </div>
                             </div>
 

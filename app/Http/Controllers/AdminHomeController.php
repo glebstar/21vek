@@ -101,6 +101,9 @@ class AdminHomeController extends Controller
     private function validateObject(Request $request) {
         if ($request->category == 'квартира') {
             $this->validate($request, [
+                'o-region' => 'required_if:sub-locality-name,Другой',
+                'o-locality' => 'required_if:sub-locality-name,Другой',
+                'o-sub-locality' => 'required_if:sub-locality-name,Другой',
                 'sub-locality-name' => 'required|max:255',
                 'address' => 'required|max:255',
                 'area' => 'required|integer',
@@ -112,6 +115,9 @@ class AdminHomeController extends Controller
             ]);
         } elseif ($request->category == 'дом') {
             $this->validate($request, [
+                'o-region' => 'required_if:sub-locality-name,Другой',
+                'o-locality' => 'required_if:sub-locality-name,Другой',
+                'o-sub-locality' => 'required_if:sub-locality-name,Другой',
                 'sub-locality-name' => 'required|max:255',
                 'address' => 'required|max:255',
                 'area' => 'required|integer',
@@ -134,6 +140,9 @@ class AdminHomeController extends Controller
             ]);
         } elseif ($request->category == 'участок') {
             $this->validate($request, [
+                'o-region' => 'required_if:sub-locality-name,Другой',
+                'o-locality' => 'required_if:sub-locality-name,Другой',
+                'o-sub-locality' => 'required_if:sub-locality-name,Другой',
                 'sub-locality-name' => 'required|max:255',
                 'address' => 'required|max:255',
                 'lot-area' => 'required|integer',
@@ -150,6 +159,16 @@ class AdminHomeController extends Controller
 
         $subLocalityName = 'sub-locality-name';
         $object->sub_locality_name = $request->$subLocalityName;
+        if ($request->$subLocalityName == 'Другой') {
+            $oRegionName = 'o-region';
+            $object->o_region = $request->$oRegionName;
+
+            $oLocalityName = 'o-locality';
+            $object->o_locality = $request->$oLocalityName;
+
+            $oLocalitySubName = 'o-sub-locality';
+            $object->o_sub_locality = $request->$oLocalitySubName;
+        }
 
         $object->is_new_building = $request->is_new_building ? 1 : 0;
 
