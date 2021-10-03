@@ -141,7 +141,15 @@ class GenFeed extends Command
                 $offer = str_replace('--deal_status--', $object->deal_status, $offer);
                 $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:sP', $object->creation_date), $offer);
                 $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:sP', $object->last_update_date), $offer);
-                $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
+                if ($object->sub_locality_name == 'Другой') {
+                    $offer = str_replace('--region--', $object->o_region, $offer);
+                    $offer = str_replace('--locality--', $object->o_locality, $offer);
+                    $offer = str_replace('--sub_locality_name--', $object->o_sub_locality, $offer);
+                } else {
+                    $offer = str_replace('--region--', 'Республика Бурятия', $offer);
+                    $offer = str_replace('--locality--', 'Улан-Удэ', $offer);
+                    $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
+                }
 
                 if ($object->cadastral_number) {
                     $offer = str_replace('--cadastral--', '<cadastral-number>' . $object->cadastral_number . '</cadastral-number>', $offer);
@@ -203,7 +211,15 @@ class GenFeed extends Command
                 $offer = str_replace('--deal_status--', $object->deal_status, $offer);
                 $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:sP', $object->creation_date), $offer);
                 $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:sP', $object->last_update_date), $offer);
-                $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
+                if ($object->sub_locality_name == 'Другой') {
+                    $offer = str_replace('--region--', $object->o_region, $offer);
+                    $offer = str_replace('--locality--', $object->o_locality, $offer);
+                    $offer = str_replace('--sub_locality_name--', $object->o_sub_locality, $offer);
+                } else {
+                    $offer = str_replace('--region--', 'Республика Бурятия', $offer);
+                    $offer = str_replace('--locality--', 'Улан-Удэ', $offer);
+                    $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
+                }
 
                 if ($object->cadastral_number) {
                     $offer = str_replace('--cadastral--', '<cadastral-number>' . $object->cadastral_number . '</cadastral-number>', $offer);
@@ -271,7 +287,15 @@ class GenFeed extends Command
                 $offer = str_replace('--deal_status--', $object->deal_status, $offer);
                 $offer = str_replace('--creation_date--', date('Y-m-d\TH:i:sP', $object->creation_date), $offer);
                 $offer = str_replace('--last_update_date--', date('Y-m-d\TH:i:sP', $object->last_update_date), $offer);
-                $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
+                if ($object->sub_locality_name == 'Другой') {
+                    $offer = str_replace('--region--', $object->o_region, $offer);
+                    $offer = str_replace('--locality--', $object->o_locality, $offer);
+                    $offer = str_replace('--sub_locality_name--', $object->o_sub_locality, $offer);
+                } else {
+                    $offer = str_replace('--region--', 'Республика Бурятия', $offer);
+                    $offer = str_replace('--locality--', 'Улан-Удэ', $offer);
+                    $offer = str_replace('--sub_locality_name--', $object->sub_locality_name, $offer);
+                }
 
                 if ($object->cadastral_number) {
                     $offer = str_replace('--cadastral--', '<cadastral-number>' . $object->cadastral_number . '</cadastral-number>', $offer);
