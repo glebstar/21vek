@@ -361,7 +361,7 @@ class GenFeed extends Command
 
         foreach ($objects as $object) {
             $obj = file_get_contents (base_path() . '/resources/console/genfeed/cian/object.xml');
-            $images = Image::where('object_id', $object->id)->orderBy('id')->get();
+            $images = Image::where('object_id', $object->id)->orderBy('sort')->orderBy('id')->get();
 
             if ($object->category == 'квартира' || $object->category == 'дом') {
                 $obj = str_replace('--id--', $object->id, $obj);
