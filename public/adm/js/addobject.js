@@ -144,7 +144,7 @@ function changeCategory(category) {
 }
 
 function deleteImage(obj) {
-    if(true) {
+    if(confirm('Удалить фотографию?')) {
         var submitdata = {
             _token: csrf_token,
             id: $(obj).attr('data-object-id'),

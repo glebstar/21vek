@@ -239,7 +239,7 @@
                         <div id="my-photos">
                         @foreach($images as $image)
                             <div class="span3 my-img" data-image-id="{{ $image->id }}">
-                                <img src="/photo/{{ $object->id }}/{{ $image->id }}.{{ $image->name }}" style="height: 100px;" />
+                                <a href="#" data-object-id="{{ $object->id }}" data-image-id="{{ $image->id }}" onclick="return deleteImage(this)"><img src="/photo/{{ $object->id }}/{{ $image->id }}.{{ $image->name }}" style="height: 100px;" /></a>
                                 <p class="clearfix" style="margin-top: 10px;"><a href="#" data-object-id="{{ $object->id }}" data-image-id="{{ $image->id }}" onclick="return deleteImage(this)">УДАЛИТЬ</a></p>
                             </div>
                         @endforeach
