@@ -182,6 +182,7 @@ function deleteDocument(obj) {
 function myDraggable()
 {
     $('#my-photos').sortable({
+        handle: "img",
         stop: function (event, ui) {
             let items = [];
             $('.my-img').each(function (){
