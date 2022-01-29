@@ -236,7 +236,8 @@
                         @if(count($images) == 0)
                         <p id="no-photo-alert" class="alert alert-info">Нет фотографий</p>
                         @endif
-                        <div id="my-photos">
+
+                        <div id="my-photos" class="span10">
                         @foreach($images as $image)
                             <div class="span3 my-img" data-image-id="{{ $image->id }}">
                                 <img src="/photo/{{ $object->id }}/{{ $image->id }}.{{ $image->name }}" style="height: 100px;" />
@@ -244,6 +245,7 @@
                             </div>
                         @endforeach
                         </div>
+                        <div class="span2" style="cursor: pointer;" onclick="return fixCopy(this);">Копировать</div>
                     </div>
 
                     <span class="btn btn-success fileinput-button">

@@ -195,3 +195,15 @@ function myDraggable()
     });
     $('#my-photos').disableSelection();
 }
+
+function fixCopy(obj) {
+    if ($(obj).html() === 'Копировать') {
+        $( "#my-photos" ).sortable({
+            disabled: true
+        });
+        $(obj).html('Перетаскивать');
+    } else {
+        myDraggable();
+        $(obj).html('Копировать');
+    }
+}
