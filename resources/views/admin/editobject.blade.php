@@ -245,7 +245,7 @@
                             </div>
                         @endforeach
                         </div>
-                        <div class="span2" style="cursor: pointer;" onclick="return fixCopy(this);">Копировать</div>
+                        <div class="span2" style="cursor: pointer; color: #0088cc; margin-top: 10px;" onclick="return fixCopy(this);">Копировать</div>
                     </div>
 
                     <span class="btn btn-success fileinput-button">
