@@ -68,6 +68,10 @@ Route::get('/contact', 'HomeController@contact');
 Route::get('/kuplu-kvartiru', 'KupluController@index');
 Route::post('/kuplu-kvartiru', 'KupluController@index');
 
+Route::get('/starkov', function (){
+    return view('star');
+});
+
 Route::get('/aaa', function (){
     //Artisan::call('genfeed');
     //dd(\App\Offer::get());
