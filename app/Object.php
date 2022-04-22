@@ -71,7 +71,7 @@ class Object extends Model
     public function addImage(UploadedFile $file) {
         $dir = public_path() . '/photo/' . $this->id;
         $filePath = $file->getPath() . '/' . $file->getFilename();
-        $size = getimagesize($filePath);
+        $size = @getimagesize($filePath);
         if (! $size) {
             return false;
         }
@@ -112,7 +112,7 @@ class Object extends Model
 
         imagecopyresampled($newimg, $oldimg, 0, 0, 0, 0, 800, $newHeight, $size[0], $size[1]);
 
-        $exif = @exif_read_data($filePath);
+        $exif = exif_read_data($filePath);
         if(!empty($exif['Orientation'])) {
             switch($exif['Orientation']) {
                 case 8:
@@ -123,6 +123,8 @@ class Object extends Model
                     break;
                 case 6:
                     $newimg = imagerotate($newimg, -90, 0);
+                    break;
+                default:
                     break;
             }
         }
