@@ -71,7 +71,7 @@ class Object extends Model
     public function addImage(UploadedFile $file) {
         $dir = public_path() . '/photo/' . $this->id;
         $filePath = $file->getPath() . '/' . $file->getFilename();
-        $size = @getimagesize($filePath);
+        $size = getimagesize($filePath);
         if (! $size) {
             return false;
         }
