@@ -69,7 +69,7 @@
     </div>
 
     <footer class="footer">
-        <p>&copy; 2017 АН 21 век. Тел: 63-70-55</p>
+        <p>&copy; 2017 - {{ date('Y') }} АН 21 век. Тел: +7-9025-63-70-55</p>
     </footer>
 
 </div> <!-- /container -->
